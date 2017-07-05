@@ -14,6 +14,7 @@
         </div>
         <div class="card">
             <div class="body">
+                {{-- Display Status Message --}}
                 @if (session('status'))
                     <div class="alert alert-success">
                         {{ session('status') }}
@@ -32,12 +33,16 @@
                     </div>
                 @endif
                 
+                {{-- Reset Password Form --}}
                 <form id="sign_up" method="POST" action="{{ route('password.request') }}">
                     {{ csrf_field() }}
 
                     <input type="hidden" name="token" value="{{ $token }}">
 
+                    {{-- Form Message --}}
                     <div class="msg">Reset Password</div>
+
+                    {{-- Email Field --}}
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">email</i>
@@ -46,6 +51,8 @@
                             <input id="email" type="email" class="form-control" name="email" placeholder="Email Address" value="{{ $email or old('email') }}" required autofocus>
                         </div>
                     </div>
+
+                    {{-- Password Field --}}                    
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">lock</i>
@@ -54,6 +61,8 @@
                             <input id="password" type="password" class="form-control" name="password" minlength="6" placeholder="Password" required>
                         </div>
                     </div>
+
+                    {{-- Confirm Password Field --}}                    
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">lock</i>
@@ -63,8 +72,10 @@
                         </div>
                     </div>
 
+                    {{-- Reset Password Button --}}                    
                     <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">RESET PASSWORD</button>
 
+                    {{-- Login Button --}}                    
                     <div class="m-t-25 m-b--5 align-center">
                         <a href="{{ route('login') }}">Back to login</a>
                     </div>

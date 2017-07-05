@@ -26,10 +26,14 @@
                     </div>
                 @endif
                 
+                {{-- Registration Form --}}
                 <form id="sign_up" method="POST" action="{{ route('register') }}">
                     {{ csrf_field() }}
 
+                    {{-- Form Message --}}
                     <div class="msg">Register a new membership</div>
+
+                    {{-- Name Field --}}
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
@@ -38,6 +42,8 @@
                             <input type="text" class="form-control" name="name" placeholder="Name" required>
                         </div>
                     </div>
+
+                    {{-- Email Field --}}
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">email</i>
@@ -46,6 +52,8 @@
                             <input type="email" class="form-control" name="email" placeholder="Email Address" required>
                         </div>
                     </div>
+
+                    {{-- Phone Number Field --}}
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">contact_phone</i>
@@ -54,6 +62,8 @@
                             <input type="text" class="form-control" name="phone_number" placeholder="Phone Number" required>
                         </div>
                     </div>
+
+                    {{-- Password Field --}}
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">lock</i>
@@ -62,6 +72,8 @@
                             <input type="password" class="form-control" name="password" minlength="6" placeholder="Password" required>
                         </div>
                     </div>
+
+                    {{-- Confirm Password Field --}}
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">lock</i>
@@ -75,8 +87,10 @@
                         <label for="terms">I read and agree to the <a href="javascript:void(0);">terms of usage</a>.</label>
                     </div> --}}
 
+                    {{-- Sign Up Button --}}
                     <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">SIGN UP</button>
 
+                    {{-- Login Button --}}
                     <div class="m-t-25 m-b--5 align-center">
                         <a href="{{ route('login') }}">Already a member?</a>
                     </div>

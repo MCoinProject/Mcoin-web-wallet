@@ -26,10 +26,14 @@
                     </div>
                 @endif
 
+                {{-- Login Form --}}
                 <form id="sign_in" method="POST" action="{{ route('login') }}">
                     {{ csrf_field() }}
 
+                    {{-- Form Message --}}
                     <div class="msg">Sign in to start your session</div>
+
+                    {{-- Email Field --}}
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
@@ -38,6 +42,8 @@
                             <input type="text" class="form-control" name="email" placeholder="Email" required autofocus>
                         </div>
                     </div>
+
+                    {{-- Password Field --}}
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">lock</i>
@@ -46,19 +52,27 @@
                             <input type="password" class="form-control" name="password" placeholder="Password" required>
                         </div>
                     </div>
+                    
                     <div class="row">
+                        {{-- Remember Me Tickbox --}}
                         <div class="col-xs-8 p-t-5">
                             <input type="checkbox" name="remember" id="remember" class="filled-in chk-col-pink" {{ old('remember') ? 'checked' : '' }}>
                             <label for="rememberme">Remember Me</label>
                         </div>
+
+                        {{-- Sign In Button --}}
                         <div class="col-xs-4">
                             <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
                         </div>
                     </div>
+
                     <div class="row m-t-15 m-b--20">
+                        {{-- Register Button --}}
                         <div class="col-xs-6">
                             <a href="{{ route('register') }}">Register Now!</a>
                         </div>
+
+                        {{-- Forgot Password Button --}}
                         <div class="col-xs-6 align-right">
                             <a href="{{ route('password.request') }}">Forgot Password?</a>
                         </div>
