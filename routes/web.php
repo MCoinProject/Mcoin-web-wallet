@@ -11,14 +11,40 @@
 |
 */
 
+///return welcome page 
 Route::get('/', function () {
-    return view('welcome');
+	if (Auth::check()) 
+	{
+	   return redirect('admin');
+	}
+	else
+	{
+		return redirect('login');
+	}
+    
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('admin', function () {
-    return view('admin_template');
+///return admin page, where admin is the prefix to the route inside the group
+Route::group(['prefix'=>'admin' , 'middleware'=>'auth'] , function () {
+
+	/*
+	*	Dashboard view
+	*/
+	Route::get('/', 'DashboardController@getData');
+	
+	/*
+	*	Logout
+	*/
+	Route::get('/logout', function () {
+		Auth::logout();
+		return redirect('login');
+	});
 });
+
+// Route::get('admin', function () {
+//     return view('admin_template');
+// });
