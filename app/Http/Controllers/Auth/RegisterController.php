@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Wallet;
+use App\Profile;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -62,10 +64,27 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            // 'name' => $data['name'],
+        $privateKey = openssl_pkey_new(array('private_key_bits' => 2048));
+        $details = openssl_pkey_get_details($privateKey);
+        $publicKey = $details['key'];
+
+        $newUser = User::create([
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        $newWallet = Wallet::create([
+            'user_id' => $newUser->id,
+            'private_key' => $newUser->id,
+            'public_key' => $newUser->id
+        ]);
+
+        $newProfile = Profile::create([
+            'user_id' => $newUser->id,
+            'name' => $data['name'],
+            'phone_number' => $data['phone_number']
+        ]);
+
+        return $newUser;
     }
 }
