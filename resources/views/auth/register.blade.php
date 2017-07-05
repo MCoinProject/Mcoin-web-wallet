@@ -32,10 +32,26 @@
                     <div class="msg">Register a new membership</div>
                     <div class="input-group">
                         <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="name" placeholder="Name" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
                             <i class="material-icons">email</i>
                         </span>
                         <div class="form-line">
                             <input type="email" class="form-control" name="email" placeholder="Email Address" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">contact_phone</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="phone_number" placeholder="Phone Number" required>
                         </div>
                     </div>
                     <div class="input-group">
