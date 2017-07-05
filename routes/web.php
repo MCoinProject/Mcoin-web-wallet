@@ -15,7 +15,7 @@
 Route::get('/', function () {
 	if (Auth::check()) 
 	{
-	   return redirect('admin');
+	   return redirect('home');
 	}
 	else
 	{
@@ -29,12 +29,12 @@ Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
 
 ///return admin page, where admin is the prefix to the route inside the group
-Route::group(['prefix'=>'admin' , 'middleware'=>'auth'] , function () {
+Route::group(['middleware'=>'auth'] , function () {
 
 	/*
 	*	Dashboard view
 	*/
-	Route::get('/', 'DashboardController@getData');
+	Route::get('/home', 'DashboardController@getData');
 	
 	/*
 	*	Logout
