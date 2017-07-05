@@ -9,7 +9,7 @@
 <body class="login-page">
     <div class="login-box">
         <div class="logo">
-            <a href="javascript:void(0);">Dash <b>Wallet</b></a>
+            <a href="javascript:void(0);">ETP <b>Wallet</b></a>
             <small>Fastest and Most Secured Wallet of All Time</small>
         </div>
         <div class="card">
@@ -28,7 +28,7 @@
 
                 <form id="sign_in" method="POST" action="{{ route('login') }}">
                     {{ csrf_field() }}
-                    
+
                     <div class="msg">Sign in to start your session</div>
                     <div class="input-group">
                         <span class="input-group-addon">

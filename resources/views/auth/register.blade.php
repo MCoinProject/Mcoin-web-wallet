@@ -9,23 +9,27 @@
 <body class="signup-page">
     <div class="signup-box">
         <div class="logo">
-            <a href="javascript:void(0);">Dash <b>Wallet</b></a>
+            <a href="javascript:void(0);">ETP <b>Wallet</b></a>
             <small>Fastest and Most Secured Wallet of All Time</small>
         </div>
         <div class="card">
             <div class="body">
+                {{-- Display error message --}}
+                @if ( $errors->has('email') || $errors->has('password') )
+                    <div class="alert bg-red alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        @if($errors->has('email'))
+                            {{ $errors->first('email') }}
+                        @else
+                            {{ $errors->first('password') }}
+                        @endif
+                    </div>
+                @endif
+                
                 <form id="sign_up" method="POST" action="{{ route('register') }}">
                     {{ csrf_field() }}
-                    
+
                     <div class="msg">Register a new membership</div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="text" class="form-control" name="namesurname" placeholder="Name Surname" required autofocus>
-                        </div>
-                    </div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">email</i>
@@ -47,7 +51,7 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="confirm" minlength="6" placeholder="Confirm Password" required>
+                            <input type="password" class="form-control" name="password_confirmation" minlength="6" placeholder="Confirm Password" required>
                         </div>
                     </div>
                     <div class="form-group">
