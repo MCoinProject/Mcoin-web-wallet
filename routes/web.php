@@ -37,6 +37,18 @@ Route::group(['middleware'=>'auth'] , function () {
 	Route::get('/home', 'DashboardController@getData');
 	
 	/*
+	* 	Transaction view
+	*/
+	Route::group(['prefix'=>'transactions', 'middleware'=>'auth'], function () {
+		Route::get('/send', function () {
+			return view('pages.send');
+		});
+		Route::get('/request', function () {
+			return view('pages.request');
+		});
+	});
+
+	/*
 	*	Logout
 	*/
 	Route::get('/logout', function () {

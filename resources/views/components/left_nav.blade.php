@@ -38,10 +38,24 @@
                 </a>
             </li>
             <li class="{{ Request::is('transactions', 'transactions/*') ? 'active' : '' }}">
-                <a href="../../pages/typography.html">
+                <a href="javascript:void(0);" class="menu-toggle">
                     <i class="material-icons">repeat</i>
                     <span>Transactions</span>
                 </a>
+                <ul class="ml-menu">
+                    <li>
+                        <a href="{{ URL::to('/transactions/send') }}">
+                            <i class="material-icons">call_made</i>
+                            <span>Send</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ URL::to('/transactions/request') }}">
+                            <i class="material-icons">call_received</i>
+                            <span>Request</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>
