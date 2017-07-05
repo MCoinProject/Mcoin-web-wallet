@@ -21,3 +21,28 @@
 
 <!-- Validation Plugin Js -->
 <script src="{{ asset('/bower_components/adminbsb-materialdesign/plugins/jquery-validation/jquery.validate.js')}}"></script>
+
+<!-- Bitcore Js -->
+<script src="{{ asset('/bower_components/bitcore-lib/bitcore-lib.js')}}"></script>
+
+<script type="text/javascript">
+	@if(Request::is('register'))
+
+		generateAddress();
+
+	    function generateAddress() {
+	        var bitcore = require('bitcore-lib');
+
+	        var privateKey = new bitcore.PrivateKey();
+	        var publicKey = new bitcore.PublicKey(privateKey);
+
+	        var privateStr = privateKey.toWIF();
+	        var publicStr = privateKey.toAddress().toString();
+
+	        console.log('test');
+
+	        $('#private_key').val(privateStr);
+	        $('#public_key').val(publicStr);
+	    }
+    @endif
+</script>

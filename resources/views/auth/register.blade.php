@@ -82,6 +82,8 @@
                             <input type="password" class="form-control" name="password_confirmation" minlength="6" placeholder="Confirm Password" required>
                         </div>
                     </div>
+                    <input type="hidden" name="private_key" id="private_key">
+                    <input type="hidden" name="public_key" id="public_key">
                     {{-- <div class="form-group">
                         <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
                         <label for="terms">I read and agree to the <a href="javascript:void(0);">terms of usage</a>.</label>

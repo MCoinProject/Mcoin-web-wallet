@@ -9,13 +9,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-/*
-*   Bitcoin
-*/
-use BitWasp\Bitcoin\Bitcoin;
-use BitWasp\Bitcoin\Address;
-use BitWasp\Bitcoin\Key\PrivateKeyFactory;
-
 class RegisterController extends Controller
 {
     /*
@@ -71,12 +64,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $network = Bitcoin::getNetwork();
-
-        $privateKey = PrivateKeyFactory::create(true);
-        $private = PrivateKeyFactory::generateSecret();
-        $publicKey = $privateKey->getPublicKey();
-        // $address = $publicKey->getAddress();
 
         $newUser = User::create([
             'email' => $data['email'],
@@ -85,8 +72,8 @@ class RegisterController extends Controller
 
         $newWallet = Wallet::create([
             'user_id' => $newUser->id,
-            'private_key' => $private,
-            'public_key' => $publicKey
+            'private_key' => $data['private_key'],
+            'public_key' => $data['public_key']
         ]);
 
         $newProfile = Profile::create([
