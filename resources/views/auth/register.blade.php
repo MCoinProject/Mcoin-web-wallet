@@ -54,10 +54,10 @@
                             <input type="password" class="form-control" name="password_confirmation" minlength="6" placeholder="Confirm Password" required>
                         </div>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
                         <label for="terms">I read and agree to the <a href="javascript:void(0);">terms of usage</a>.</label>
-                    </div>
+                    </div> --}}
 
                     <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">SIGN UP</button>
 
