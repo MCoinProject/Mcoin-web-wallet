@@ -3,15 +3,15 @@
         <div class="navbar-header">
             <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
             <a href="javascript:void(0);" class="bars"></a>
-            <a class="navbar-brand" href="../../index.html">ADMINBSB - MATERIAL DESIGN</a>
+            <a class="navbar-brand" href="../../index.html">ETP WALLET</a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <!-- Call Search -->
-                <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
+                {{-- <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li> --}}
                 <!-- #END# Call Search -->
                 <!-- Notifications -->
-                <li class="dropdown">
+                {{-- <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
                         <i class="material-icons">notifications</i>
                         <span class="label-count">7</span>
@@ -117,7 +117,7 @@
                             <a href="javascript:void(0);">View All Notifications</a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
                 <!-- #END# Notifications -->
                 <!-- Tasks -->
                 {{-- <li class="dropdown">

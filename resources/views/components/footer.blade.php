@@ -20,4 +20,4 @@
 <script src="{{ asset('/bower_components/adminbsb-materialdesign/js/demo.js')}}"></script>
 
 <!-- Validation Plugin Js -->
-<script src="{{ asset('/bower_components/jquery-validation/jquery.validate.js')}}"></script>
+<script src="{{ asset('/bower_components/adminbsb-materialdesign/plugins/jquery-validation/jquery.validate.js')}}"></script>
