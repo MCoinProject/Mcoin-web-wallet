@@ -33,7 +33,7 @@
                         
                         {{-- Generate QR Code Field --}}
                         <center>
-                            <img src="https://chart.googleapis.com/chart?cht=qr&chs=250x250&chl={{Auth::user()->wallet->public_key}}" alt="">
+                            <img src="https://chart.googleapis.com/chart?cht=qr&chs=250x250&chl={{Auth::user()->wallet->address}}" alt="">
                         </center>
                         
                     	{{-- Wallet Address Field --}}
@@ -45,7 +45,7 @@
                                 <div class="form-group">
                                     <div class="form-line">
                                         {{-- <input type="text" id="wallet_address" class="form-control" placeholder="Your wallet address" name="wallet_address" disabled> --}}
-                                        <h5>{{Auth::user()->wallet->public_key}} <span><i class="material-icons pull-right waves-effect">content_copy</i></span></h5>
+                                        <h5>{{Auth::user()->wallet->address}} <span><i class="material-icons pull-right waves-effect">content_copy</i></span></h5>
                                     </div>
                                 </div>
                             </div>

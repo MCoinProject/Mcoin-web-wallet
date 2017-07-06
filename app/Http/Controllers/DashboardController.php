@@ -16,13 +16,15 @@ class DashboardController extends Controller
 {
     public function getData()
     {
-    	$transactions = TransferAsset::all();
-    	$users = User::all();
+        $user =  Auth::user();
+
+    	$transfers = TransferAsset::orWhere('sender_address', $user->wallet->address)
+        ->orWhere('receiver_address', $user->wallet->address)
+        ->paginate(5);
 
     	///return data and display to the page
     	$page_settings = array(
-    	    'transactions' => $transactions,
-    	    'users' => $users
+    	    'transfers' => $transfers
     	);
 
     	return view('pages.dashboard')->with($page_settings);

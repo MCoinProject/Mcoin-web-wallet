@@ -40,7 +40,7 @@
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                 <div class="form-group">
                                     <div class="form-line">                                        
-                                        <input type="text" id="name" class="form-control" placeholder="User Name" name="name">
+                                        <input type="text" id="name" class="form-control" placeholder="User Name" name="name" value="{{ Auth::user()->profile->name }}">
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="phone_number" class="form-control" placeholder="Phone Number" name="phone_number">
+                                        <input type="text" id="phone_number" class="form-control" placeholder="Phone Number" name="phone_number" value="{{ Auth::user()->profile->phone_number }}">
                                     </div>
                                 </div>
                             </div>
