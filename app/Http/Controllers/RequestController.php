@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Wallet;
-use App\Transaction;
-use App\User;
+use App\RequestAsset;
+// use App\User;
 
 use Validator;
 use stdClass;
@@ -29,8 +29,9 @@ class RequestController extends Controller
     public function sendRequest(Request $request)
     {
     	$response = new stdClass();
+    	// $user = Auth::user();
+
     	$errors = array();
-    	$success = false;
 
     	// Validate data according to necessity
     	$validator = Validator::make($request->all(), [
@@ -38,6 +39,26 @@ class RequestController extends Controller
     		'email' => 'required|email|max:255',
     		'description' => 'max:255|nullable'
     	]);
+
+    	if($validator->fails()) {
+    		$message = $validator->errors();
+    	} else {
+    		// Create Request
+    		$newRequest = RequestAsset::create([
+    			'amount' => $request->amount,
+    			'email' => $request->email,
+    			'description' => $request->description
+    		]);
+
+    		if($newRequest) {
+    			$success = true;
+    			$response->data = $newRequest;
+    		} else {
+    			$response->message = $message;
+    		}
+
+    		return response()->json($response);
+    	}
     }
 
     /*

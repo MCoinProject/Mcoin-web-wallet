@@ -33,19 +33,27 @@
 	                <table class="table table-striped table-hover">
 	                    <thead>
 	                        <tr>
-	                            <th>#</th>
-	                            <th>FIRST NAME</th>
-	                            <th>LAST NAME</th>
-	                            <th>USERNAME</th>
+	                            <th>Amount</th>
+	                            <th>Address</th>
+	                            <th>Type</th>
+	                            <th>Date</th>
 	                        </tr>
 	                    </thead>
 	                    <tbody>
+	                    	@foreach($transfers as $transfer)
 	                        <tr>
-	                            <th scope="row">1</th>
-	                            <td>Mark</td>
-	                            <td>Otto</td>
-	                            <td>@mdo</td>
+	                            <td>{{ $transfer->amount }}</td>
+	                            <td>{{ $transfer->receiver_address }}</td>
+	                            <td>
+	                            	@if($transfer->sender_address == Auth::user()->wallet->address)
+	                            	Transfer
+	                            	@else
+	                            	Receive
+	                            	@endif
+	                            </td>
+	                            <td>{{ $transfer->created_at }}</td>
 	                        </tr>
+	                        @endforeach
 	                    </tbody>
 	                </table>
 	            </div>
