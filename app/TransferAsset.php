@@ -17,6 +17,7 @@ class TransferAsset extends Model
         'receiver_address',
         'amount',
         'description',
-        'miner_fee',
+        'code',
+        'status',
     ];
 }

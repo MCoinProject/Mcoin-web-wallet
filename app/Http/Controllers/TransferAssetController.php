@@ -10,6 +10,7 @@ use stdClass;
 use Validator;
 
 use App\TransferAsset;
+use App\Jobs\SendEmail;
 
 class TransferAssetController extends Controller
 {
@@ -33,19 +34,25 @@ class TransferAssetController extends Controller
     	} 
     	else 
     	{
+            $code = str_random(20);
     		$newTransferAsset = TransferAsset::create([
     			'user_id' => $user->id,
     			'sender_address' => $user->wallet->address,
     			'receiver_address' => $request->address,
     			'amount' => $request->amount,
-    			'email' => $request->email,
+                'email' => $request->email,
+                'code' => $code,
+    			'status' => 'pending',
     		]);
 
     		if($newTransferAsset) {
-    			$message = $request->amount." DNC was sent to ".$request->address;
+    			$message = "A confirmation link was sent to your email. Please click on the link to proceed.";
     			$success = true;
+
+                dispatch(new SendEmail($user, $request->amount, $request->address, $code, 'transfer'));
+
     		} else {
-    			$message = "TransferAsset failed";
+    			$message = "Transfer asset failed";
     			$success = false;
     		}
     		
@@ -55,5 +62,34 @@ class TransferAssetController extends Controller
     	$response->success = $success;
 
     	return response()->json($response);
+    }
+
+    public function validateTransfer(Request $request)
+    {
+        $transfer = TransferAsset::where('code', $request->txn)->first();
+        $res = 0;
+        $message = "Invalid code!";
+        $success = false;
+
+        if($transfer && $transfer->status != 'success'){
+            $res = TransferAsset::where('id', $transfer->id)->update(['status' => 'success']);
+        } else {
+            $res = 2;
+        }
+
+        if($res == 1){
+            $success = true;
+            $message = "Transfer successful!";
+        } else if ($res == 2) {
+            $message = "Transfer have been validated!";
+        }
+
+        ///return data and display to the page
+        $page_settings = array(
+            'success' => $success,
+            'message' => $message,
+        );
+
+        return view('results.transfer')->with($page_settings);
     }
 }
