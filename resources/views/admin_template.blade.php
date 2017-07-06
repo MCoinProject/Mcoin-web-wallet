@@ -7,6 +7,7 @@
 </head>
 
 <body class="theme-red">
+
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
@@ -24,9 +25,11 @@
         </div>
     </div>
     <!-- #END# Page Loader -->
+
     <!-- Overlay For Sidebars -->
     <div class="overlay"></div>
     <!-- #END# Overlay For Sidebars -->
+
     <!-- Search Bar -->
     <div class="search-bar">
         <div class="search-icon">
@@ -38,13 +41,16 @@
         </div>
     </div>
     <!-- #END# Search Bar -->
+
     <!-- Top Nav Bar -->
     @include('components.top_nav')
     <!-- #Top Nav Bar -->
+
     <section>
         <!-- Left Sidebar -->
         @include('components.left_nav')
         <!-- #END# Left Sidebar -->
+        
         <!-- Right Sidebar -->
         @include('components.right_nav')
         <!-- #END# Right Sidebar -->
