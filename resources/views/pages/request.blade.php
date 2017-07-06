@@ -41,10 +41,10 @@
                             </div>
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                 <div class="form-group">
-                                    {{-- <div class="form-line"> --}}
+                                    <div class="form-line">
                                         {{-- <input type="text" id="wallet_address" class="form-control" placeholder="Your wallet address" name="wallet_address" disabled> --}}
-                                        <h5>{{Auth::user()->wallet->public_key}}</h5>
-                                    {{-- </div> --}}
+                                        <h5>{{Auth::user()->wallet->public_key}} <span><i class="material-icons pull-right waves-effect">content_copy</i></span></h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+class Coin extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,11 +12,7 @@ class Transaction extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id',
-        'sender_address',
-        'receiver_address',
-        'amount',
-        'description',
-        'miner_fee',
+        'name',
+        'code'
     ];
 }
