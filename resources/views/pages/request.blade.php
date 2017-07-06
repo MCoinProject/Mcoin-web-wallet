@@ -90,7 +90,7 @@
                         {{-- Send Button --}}
                         <div class="row clearfix">
                             <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
-                                <button type="button" class="btn btn-primary m-t-15 waves-effect">SEND</button>
+                                <button type="button" class="btn btn-primary m-t-15 waves-effect">REQUEST</button>
                             </div>
                         </div>
                     </form>
