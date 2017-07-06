@@ -24,7 +24,7 @@
     <!-- Menu -->
     <div class="menu">
         <ul class="list">
-            <li class="header">MAIN NAVIGATION</li>
+            <li class="header {{ Request::is('profile', 'profile/*') ? 'active' : '' }}">MAIN NAVIGATION</li>
             <li class="{{ Request::is('wallet', 'wallet/*') ? 'active' : '' }}">
                 <a href="/wallet">
                     <i class="material-icons">account_balance_wallet</i>
