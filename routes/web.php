@@ -40,12 +40,18 @@ Route::group(['middleware'=>'auth'] , function () {
 	* 	Transaction view
 	*/
 	Route::group(['prefix'=>'transactions', 'middleware'=>'auth'], function () {
+		/* TRANSFER */
 		Route::get('/transfer', function () {
 			return view('pages.transfer');
 		});
+		Route::post('/transfer/add', 'TransferAssetController@transferAset');
+		/* /TRANSFER */
+
+		/* REQUEST */
 		Route::get('/request', function () {
 			return view('pages.request');
 		});
+		/* /REQUEST */
 	});
 
 	/*

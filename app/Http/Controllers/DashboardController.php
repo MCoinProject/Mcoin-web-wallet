@@ -9,14 +9,14 @@ use App\Http\Requests;
 use stdClass;
 use Validator;
 
-use App\Transaction;
+use App\TransferAsset;
 use App\User;
 
 class DashboardController extends Controller
 {
     public function getData()
     {
-    	$transactions = Transaction::all();
+    	$transactions = TransferAsset::all();
     	$users = User::all();
 
     	///return data and display to the page

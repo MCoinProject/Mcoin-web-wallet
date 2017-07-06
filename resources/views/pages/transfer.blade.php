@@ -39,7 +39,7 @@
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" id="wallet_address" class="form-control" placeholder="Enter targeted wallet address" name="wallet_address">
+                                        <input type="text" id="address" class="form-control" placeholder="Enter targeted wallet address" name="address">
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                         {{-- Send Button --}}
                         <div class="row clearfix">
                             <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
-                                <button type="button" class="btn btn-lg btn-primary m-t-15 waves-effect">SUBMIT</button>
+                                <button type="button" class="btn btn-lg btn-primary m-t-15 waves-effect" onclick="sendForm()">SUBMIT</button>
                             </div>
                         </div>
                     </form>
@@ -85,5 +85,51 @@
         </div>
     </div>
     <!-- #END# Horizontal Layout -->
+
+    <script type="text/javascript">
+        ///add/update support depending on request
+        function sendForm (){
+
+          var apiLink = '/transactions/transfer/add';
+
+           //get data from form
+           var datas = {
+              'address': $('#address').val(),
+              'amount': $('#amount').val(),
+              'email': $('#email').val()
+           };
+
+           console.log(datas);
+
+           ///ajax request to the api
+           $.ajax({
+              url: apiLink,
+              type:'post',
+              data: datas,
+              headers: {
+                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+              success:function(result){
+                 if(result.success){
+                    swal('SUCCESS', result.message, 'success').then(function() {
+                       window.location = "/wallet";
+                    });
+                 }else{
+                    var msg = "";
+                    if(typeof result.message === 'object'){
+                       for (var key in result.message) {
+                          if (result.message.hasOwnProperty(key)) {
+                             msg += result.message[key][0]+"<br>";
+                          }
+                       }
+                    }else{
+                       msg += result.message;
+                    }
+                    swal('FAILED', msg, 'error');
+                 }
+              }
+           });
+        }
+    </script>
 
 @endsection
