@@ -15,7 +15,7 @@
 Route::get('/', function () {
 	if (Auth::check()) 
 	{
-	   return redirect('home');
+	   return redirect('wallet');
 	}
 	else
 	{
@@ -34,14 +34,14 @@ Route::group(['middleware'=>'auth'] , function () {
 	/*
 	*	Dashboard view
 	*/
-	Route::get('/home', 'DashboardController@getData');
+	Route::get('/wallet', 'DashboardController@getData');
 	
 	/*
 	* 	Transaction view
 	*/
 	Route::group(['prefix'=>'transactions', 'middleware'=>'auth'], function () {
-		Route::get('/send', function () {
-			return view('pages.send');
+		Route::get('/transfer', function () {
+			return view('pages.transfer');
 		});
 		Route::get('/request', function () {
 			return view('pages.request');

@@ -13,7 +13,7 @@
                 <div class="header">
 
                 	{{-- Form Message --}}
-                    <h2>SENDING ASSETS TO OTHER WALLET</h2>
+                    <h2>TRANSFER ASSET</h2>
 
                     {{-- Form Hidden Button --}}
                     <ul class="header-dropdown m-r--5">
@@ -76,7 +76,7 @@
                         {{-- Send Button --}}
                         <div class="row clearfix">
                             <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
-                                <button type="button" class="btn btn-primary m-t-15 waves-effect">SEND</button>
+                                <button type="button" class="btn btn-lg btn-primary m-t-15 waves-effect">SUBMIT</button>
                             </div>
                         </div>
                     </form>

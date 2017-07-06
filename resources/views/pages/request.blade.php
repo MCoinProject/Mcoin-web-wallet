@@ -13,7 +13,7 @@
                 <div class="header">
 
                 	{{-- Form Message --}}
-                    <h2>REQUEST ASSETS FROM OTHER WALLET</h2>
+                    <h2>REQUEST ASSET</h2>
 
                     {{-- Form Hidden Button --}}
                     <ul class="header-dropdown m-r--5">
@@ -41,9 +41,10 @@
                             </div>
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                 <div class="form-group">
-                                    <div class="form-line">
-                                        <input type="text" id="wallet_address" class="form-control" placeholder="Your wallet address" name="wallet_address" disabled>
-                                    </div>
+                                    {{-- <div class="form-line"> --}}
+                                        {{-- <input type="text" id="wallet_address" class="form-control" placeholder="Your wallet address" name="wallet_address" disabled> --}}
+                                        <h5>{{Auth::user()->wallet->public_key}}</h5>
+                                    {{-- </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -93,7 +94,7 @@
                         {{-- Send Button --}}
                         <div class="row clearfix">
                             <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
-                                <button type="button" class="btn btn-primary m-t-15 waves-effect">SEND</button>
+                                <button type="button" class="btn btn-lg btn-primary m-t-15 waves-effect">SUBMIT</button>
                             </div>
                         </div>
                     </form>
