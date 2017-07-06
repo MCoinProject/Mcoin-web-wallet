@@ -1,6 +1,7 @@
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <title>{{ $page_title or "Wallet" }}</title>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- Favicon-->
 <link rel="icon" href="{{ asset('lightning_fav_ico/favicon.ico') }}" type="image/x-icon">
 
@@ -22,6 +23,9 @@
 
 <!-- Bootstrap Select Css -->
 <link href="{{ asset('/bower_components/adminbsb-materialdesign/plugins/bootstrap-select/css/bootstrap-select.css')}}" rel="stylesheet" />
+
+<!-- Sweetalert Css -->
+<link href="{{ asset('/bower_components/sweetalert2/dist/sweetalert2.min.css')}}" rel="stylesheet" />
 
 {{--  --}}
 

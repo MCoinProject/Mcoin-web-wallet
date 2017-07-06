@@ -9,9 +9,9 @@ use App\Http\Requests;
 use stdClass;
 use Validator;
 
-use App\Transaction;
+use App\TransferAsset;
 
-class TransactionController extends Controller
+class TransferAssetController extends Controller
 {
     public function transferAset(Request $request)
     {
@@ -20,7 +20,7 @@ class TransactionController extends Controller
 
     	///validate received data according to necessity
     	$validator = Validator::make($request->all(), [ 
-    	    'receiver_address' => 'required|max:255',
+    	    'address' => 'required|max:255',
     	    'amount' => 'required|numeric|min:0.001',
     	    'email' => 'required|email',
     	]);
@@ -33,18 +33,19 @@ class TransactionController extends Controller
     	} 
     	else 
     	{
-    		$newTransaction = Transaction::create([
-    			'sender_address' => $user->wallet->public_key,
-    			'receiver_address' => $request->receiver_address,
+    		$newTransferAsset = TransferAsset::create([
+    			'user_id' => $user->id,
+    			'sender_address' => $user->wallet->address,
+    			'receiver_address' => $request->address,
     			'amount' => $request->amount,
     			'email' => $request->email,
     		]);
 
-    		if($newTransaction) {
-    			$message = $request->amount." was sent to ".$request->receiver_address;
+    		if($newTransferAsset) {
+    			$message = $request->amount." DNC was sent to ".$request->address;
     			$success = true;
     		} else {
-    			$message = "Transaction failed";
+    			$message = "TransferAsset failed";
     			$success = false;
     		}
     		
@@ -52,7 +53,7 @@ class TransactionController extends Controller
 
     	$response->message = $message;
     	$response->success = $success;
-    	
+
     	return response()->json($response);
     }
 }

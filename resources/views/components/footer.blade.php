@@ -13,6 +13,9 @@
 <!-- Waves Effect Plugin Js -->
 <script src="{{ asset('/bower_components/adminbsb-materialdesign/plugins/node-waves/waves.js')}}"></script>
 
+<!-- SweetAlert Plugin Js -->
+<script src="{{ asset('/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
+
 <!-- Custom Js -->
 <script src="{{ asset('/bower_components/adminbsb-materialdesign/js/admin.js')}}"></script>
 {{-- <script src="{{ asset('/bower_components/adminbsb-materialdesign/js/pages/forms/advanced-form-elements.js')}}"></script> --}}
