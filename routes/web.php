@@ -26,7 +26,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/validate', 'TransferAssetController@validateTransfer');
 
 ///return admin page, where admin is the prefix to the route inside the group
 Route::group(['middleware'=>'auth'] , function () {
