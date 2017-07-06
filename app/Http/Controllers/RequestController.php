@@ -35,6 +35,7 @@ class RequestController extends Controller
 
     	// Validate data according to necessity
     	$validator = Validator::make($request->all(), [
+    		'address' => 'required|max:255'
     		'amount' => 'required|max:255',
     		'email' => 'required|email|max:255',
     		'description' => 'max:255|nullable'

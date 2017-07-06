@@ -51,6 +51,7 @@ Route::group(['middleware'=>'auth'] , function () {
 		Route::get('/request', function () {
 			return view('pages.request');
 		});
+		Route::post('/request/new', 'RequestController@sendRequest');
 		/* /REQUEST */
 	});
 

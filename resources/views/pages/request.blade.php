@@ -96,7 +96,7 @@
                         {{-- Send Button --}}
                         <div class="row clearfix">
                             <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
-                                <button type="button" class="btn btn-lg btn-primary m-t-15 waves-effect">SUBMIT</button>
+                                <button type="button" class="btn btn-lg btn-primary m-t-15 waves-effect" onclick="sendForm()">SUBMIT</button>
                             </div>
                         </div>
                     </form>
@@ -105,5 +105,51 @@
         </div>
     </div>
     <!-- #END# Horizontal Layout -->
+
+    <script type="text/javascript">
+        // Request assets from another wallet
+        function sendForm (){
+
+          var apiLink = '/transactions/request/new';
+
+           // Get data from form
+           var datas = {
+              'address': $('#address').val(),
+              'amount': $('#amount').val(),
+              'email': $('#email').val()
+           };
+
+           console.log(datas);
+
+           // Ajax request to the api
+           $.ajax({
+              url: apiLink,
+              type:'post',
+              data: datas,
+              headers: {
+                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+              success:function(result){
+                 if(result.success){
+                    swal('SUCCESS', result.message, 'success').then(function() {
+                       window.location = "/wallet";
+                    });
+                 }else{
+                    var msg = "";
+                    if(typeof result.message === 'object'){
+                       for (var key in result.message) {
+                          if (result.message.hasOwnProperty(key)) {
+                             msg += result.message[key][0]+"<br>";
+                          }
+                       }
+                    }else{
+                       msg += result.message;
+                    }
+                    swal('FAILED', msg, 'error');
+                 }
+              }
+           });
+        }
+    </script>
 
 @endsection

@@ -87,12 +87,12 @@
     <!-- #END# Horizontal Layout -->
 
     <script type="text/javascript">
-        ///add/update support depending on request
+        // Transfer assets to another wallet
         function sendForm (){
 
           var apiLink = '/transactions/transfer/add';
 
-           //get data from form
+           // Get data from form
            var datas = {
               'address': $('#address').val(),
               'amount': $('#amount').val(),
@@ -101,7 +101,7 @@
 
            console.log(datas);
 
-           ///ajax request to the api
+           // Ajax request to the api
            $.ajax({
               url: apiLink,
               type:'post',
