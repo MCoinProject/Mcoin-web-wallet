@@ -25,14 +25,8 @@
     <div class="menu">
         <ul class="list">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="{{ Request::is('home') ? 'active' : '' }}">
-                <a href="/">
-                    <i class="material-icons">home</i>
-                    <span>Home</span>
-                </a>
-            </li>
             <li class="{{ Request::is('wallet', 'wallet/*') ? 'active' : '' }}">
-                <a href="../../pages/typography.html">
+                <a href="/wallet">
                     <i class="material-icons">account_balance_wallet</i>
                     <span>Wallet</span>
                 </a>
@@ -43,15 +37,15 @@
                     <span>Transactions</span>
                 </a>
                 <ul class="ml-menu">
-                    <li>
-                        <a href="{{ URL::to('/transactions/send') }}">
-                            <i class="material-icons">call_made</i>
-                            <span>Send</span>
+                    <li class="{{ Request::is('transactions/transfer') ? 'active' : '' }}">
+                        <a href="{{ URL::to('/transactions/transfer') }}">
+                            {{-- <i class="material-icons">call_made</i> --}}
+                            <span>Transfer</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="{{ Request::is('transactions/request') ? 'active' : '' }}">
                         <a href="{{ URL::to('/transactions/request') }}">
-                            <i class="material-icons">call_received</i>
+                            {{-- <i class="material-icons">call_received</i> --}}
                             <span>Request</span>
                         </a>
                     </li>
