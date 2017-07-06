@@ -14,12 +14,44 @@
 					<i class="material-icons col-teal">equalizer</i>
 				</div>
 				<div class="content">
-					<div class="text">BOUNCE RATE</div>
-					<div class="number">62%</div>
+					<div class="text">BALANCE</div>
+					<div class="number">0.01</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- #END# Widgets -->
+
+	<!-- Striped Rows -->
+	<div class="row clearfix">
+	    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	        <div class="card">
+	            <div class="header">
+	                <h2>HISTORY</h2>
+	            </div>
+	            <div class="body table-responsive">
+	                <table class="table table-striped table-hover">
+	                    <thead>
+	                        <tr>
+	                            <th>#</th>
+	                            <th>FIRST NAME</th>
+	                            <th>LAST NAME</th>
+	                            <th>USERNAME</th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                        <tr>
+	                            <th scope="row">1</th>
+	                            <td>Mark</td>
+	                            <td>Otto</td>
+	                            <td>@mdo</td>
+	                        </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<!-- #END# Striped Rows -->
 
 @endsection

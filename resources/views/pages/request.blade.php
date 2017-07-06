@@ -31,9 +31,11 @@
                 <div class="body">
                     <form class="form-horizontal">
                         
+                        {{-- Generate QR Code Field --}}
                         <center>
                             <img src="https://chart.googleapis.com/chart?cht=qr&chs=250x250&chl={{Auth::user()->wallet->public_key}}" alt="">
                         </center>
+                        
                     	{{-- Wallet Address Field --}}
                         <div class="row clearfix">
                             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">

@@ -10,21 +10,21 @@
                 {{isset(Auth::user()->profile->name) ? Auth::user()->profile->name : "Set Your Name"}}
             </div>
             <div class="email">{{ Auth::user()->email}}</div>
-            <div class="btn-group user-helper-dropdown">
+            {{-- <div class="btn-group user-helper-dropdown">
                 <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                 <ul class="dropdown-menu pull-right">
                     <li><a href="{{ URL::to('/profile') }}"><i class="material-icons">person</i>Profile</a></li>
                     <li role="seperator" class="divider"></li>
                     <li><a href="/logout"><i class="material-icons">input</i>Sign Out</a></li>
                 </ul>
-            </div>
+            </div> --}}
         </div>
     </div>
     <!-- #User Info -->
     <!-- Menu -->
     <div class="menu">
         <ul class="list">
-            <li class="header {{ Request::is('profile', 'profile/*') ? 'active' : '' }}">MAIN NAVIGATION</li>
+            <li class="header">MAIN NAVIGATION</li>
             <li class="{{ Request::is('wallet', 'wallet/*') ? 'active' : '' }}">
                 <a href="/wallet">
                     <i class="material-icons">account_balance_wallet</i>
@@ -50,6 +50,18 @@
                         </a>
                     </li>
                 </ul>
+            </li>
+            <li class="{{ Request::is('profile', 'profile/*') ? 'active' : '' }}">
+                <a href="{{ URL::to('/profile') }}">
+                    <i class="material-icons">person</i>
+                    <span>Profile</span>
+                </a>
+            </li>
+            <li class="{{ Request::is('logout', 'logout/*') ? 'active' : '' }}">
+                <a href="/logout">
+                    <i class="material-icons">input</i>
+                    <span>Sign Out</span>
+                </a>
             </li>
         </ul>
     </div>

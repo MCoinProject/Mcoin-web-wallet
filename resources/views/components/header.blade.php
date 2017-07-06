@@ -17,6 +17,14 @@
 <!-- Animation Css -->
 <link href="{{ asset('/bower_components/adminbsb-materialdesign/plugins/animate-css/animate.css')}}" rel="stylesheet" />
 
+<!-- Dropzone Css -->
+<link href="{{ asset('/bower_components/adminbsb-materialdesign/plugins/dropzone/dropzone.css')}}" rel="stylesheet">
+
+<!-- Bootstrap Select Css -->
+<link href="{{ asset('/bower_components/adminbsb-materialdesign/plugins/bootstrap-select/css/bootstrap-select.css')}}" rel="stylesheet" />
+
+{{--  --}}
+
 <!-- Custom Css -->
 <link href="{{ asset('/bower_components/adminbsb-materialdesign/css/style.css')}}" rel="stylesheet">
 
