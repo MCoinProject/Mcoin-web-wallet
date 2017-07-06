@@ -37,12 +37,14 @@
 	        var publicKey = new bitcore.PublicKey(privateKey);
 
 	        var privateStr = privateKey.toWIF();
-	        var publicStr = privateKey.toAddress().toString();
+	        var publicStr = privateKey.toPublicKey();
+	        var address = publicStr.toAddress().toString();
 
 	        console.log('test');
 
 	        $('#private_key').val(privateStr);
-	        $('#public_key').val(publicStr);
+	        $('#public_key').val(publicStr.toString());
+	        $('#address').val(address);
 	    }
     @endif
 </script>

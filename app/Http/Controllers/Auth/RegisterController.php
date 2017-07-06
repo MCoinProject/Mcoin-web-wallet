@@ -72,6 +72,7 @@ class RegisterController extends Controller
 
         $newWallet = Wallet::create([
             'user_id' => $newUser->id,
+            'address' => $data['address'],
             'private_key' => $data['private_key'],
             'public_key' => $data['public_key']
         ]);
