@@ -2,18 +2,18 @@
 
 @section('content')
 
-	<div class="block-header">
-	    <h2>TRANSACTIONS</h2>
-	</div>
+    <div class="block-header">
+        <h2>PROFILE</h2>
+    </div>
 
-	<!-- Horizontal Layout -->
+    <!-- Horizontal Layout -->
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
 
-                	{{-- Form Message --}}
-                    <h2>REQUEST ASSET</h2>
+                    {{-- Form Message --}}
+                    <h2>USER PROFILE</h2>
 
                     {{-- Form Hidden Button --}}
                     <ul class="header-dropdown m-r--5">
@@ -31,63 +31,55 @@
                 <div class="body">
                     <form class="form-horizontal">
                         
-                        {{-- Generate QR Code Field --}}
-                        <center>
-                            <img src="https://chart.googleapis.com/chart?cht=qr&chs=250x250&chl={{Auth::user()->wallet->public_key}}" alt="">
-                        </center>
-                        
-                    	{{-- Wallet Address Field --}}
+                        {{-- Name Field --}}
                         <div class="row clearfix">
                             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                <label for="email_address_2">Wallet Address</label>
+                                {{-- <label for="email_address_2">Name</label> --}}
+                                <span><i class="material-icons pull-right waves-effect">create</i></span>
                             </div>
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                 <div class="form-group">
-                                    <div class="form-line">
-                                        {{-- <input type="text" id="wallet_address" class="form-control" placeholder="Your wallet address" name="wallet_address" disabled> --}}
-                                        <h5>{{Auth::user()->wallet->public_key}} <span><i class="material-icons pull-right waves-effect">content_copy</i></span></h5>
+                                    <div class="form-line">                                        
+                                        <input type="text" id="name" class="form-control" placeholder="User Name" name="name">
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        {{-- Amount Field --}}
+                        {{-- Phone Number Field --}}
                         <div class="row clearfix">
                             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                <label for="password_2">Amount</label>
+                                <span><i class="material-icons pull-right waves-effect">contact_phone</i></span>
                             </div>
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="number" id="amount" class="form-control" placeholder="Enter amount" name="amount">
+                                        <input type="text" id="phone_number" class="form-control" placeholder="Phone Number" name="phone_number">
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        {{-- Email Field --}}
+                        {{-- Profile Picture Field --}}
                         <div class="row clearfix">
                             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                <label for="password_2">Email</label>
+                                <span><i class="material-icons pull-right waves-effect">face</i></span>
                             </div>
                             <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="email" id="email" class="form-control" placeholder="Enter requested email address" name="email">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {{-- Description Field --}}
-                        <div class="row clearfix">
-                            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                <label for="password_2">Description</label>
-                            </div>
-                            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <input type="text" id="email" class="form-control" placeholder="Descriptions" name="description">
+                                        {{-- <input type="text" id="profile_picture" class="form-control" placeholder="Change Profile Picture" name="profile_picture"> --}}
+                                        <form action="/" id="frmFileUpload" class="dropzone" method="post" enctype="multipart/form-data">
+                                            {{-- <div class="dz-message">
+                                                <div class="drag-icon-cph">
+                                                    <i class="material-icons">touch_app</i>
+                                                </div>
+                                            </div> --}}
+                                            <div class="fallback">
+                                                <input name="file" type="file" multiple />
+                                            </div>
+                                        </form>
+                                        </input>
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +88,7 @@
                         {{-- Send Button --}}
                         <div class="row clearfix">
                             <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
-                                <button type="button" class="btn btn-lg btn-primary m-t-15 waves-effect">SUBMIT</button>
+                                <button type="button" class="btn btn-lg btn-primary m-t-15 waves-effect">EDIT</button>
                             </div>
                         </div>
                     </form>

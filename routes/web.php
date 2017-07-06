@@ -49,6 +49,15 @@ Route::group(['middleware'=>'auth'] , function () {
 	});
 
 	/*
+	*	Profile view
+	*/
+	Route::group(['prefix'=>'profile', 'middleware'=>'auth'], function () {
+		Route::get('/', function () {
+			return view('pages.profile');
+		});
+	});
+
+	/*
 	*	Logout
 	*/
 	Route::get('/logout', function () {

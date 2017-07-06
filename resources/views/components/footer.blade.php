@@ -15,6 +15,7 @@
 
 <!-- Custom Js -->
 <script src="{{ asset('/bower_components/adminbsb-materialdesign/js/admin.js')}}"></script>
+{{-- <script src="{{ asset('/bower_components/adminbsb-materialdesign/js/pages/forms/advanced-form-elements.js')}}"></script> --}}
 
 <!-- Demo Js -->
 <script src="{{ asset('/bower_components/adminbsb-materialdesign/js/demo.js')}}"></script>
@@ -22,12 +23,14 @@
 <!-- Validation Plugin Js -->
 <script src="{{ asset('/bower_components/adminbsb-materialdesign/plugins/jquery-validation/jquery.validate.js')}}"></script>
 
+<!-- Dropzone Plugin Js -->
+<script src="{{ asset('/bower_components/adminbsb-materialdesign/plugins/dropzone/dropzone.js')}}"></script>
+
 <!-- Bitcore Js -->
 <script src="{{ asset('/bower_components/bitcore-lib/bitcore-lib.js')}}"></script>
 
 <script type="text/javascript">
 	@if(Request::is('register'))
-
 		generateAddress();
 
 	    function generateAddress() {
