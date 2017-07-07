@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TransferAsset extends Model
+class LoginHistory extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -13,19 +13,13 @@ class TransferAsset extends Model
      */
     protected $fillable = [
         'user_id',
-        'target_email',
-        'sender_address',
-        'receiver_address',
-        'amount',
-        'description',
-        'code',
-        'status',
+        'ip_address'
     ];
 
     public $appends = ['user'];
 
     public function getUserAttribute()
     {
-        return $this->belongsTo('App\User', 'user_id')->first();
+    	return $this->belongsTo('App\User', 'user_id')->first();
     }
 }

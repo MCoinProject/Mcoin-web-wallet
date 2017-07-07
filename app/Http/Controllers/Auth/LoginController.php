@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use App\User;
+use App\LoginHistory;
+use Illuminate\Http\Request;
+
 class LoginController extends Controller
 {
     /*
@@ -35,5 +39,25 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * This function will automatically called after successful login.
+     * It will redirect to wallet page and store ip address in db
+     *
+     * @return void
+     */
+    protected function authenticated(Request $request, User $user){
+       
+        ///Stores ip address and last login value in array
+        $args = array(
+            'ip_address' => $request->ip(),
+            'user_id' => $user->id
+        );
+
+        LoginHistory::create($args);
+
+        return redirect('/');
+        
     }
 }

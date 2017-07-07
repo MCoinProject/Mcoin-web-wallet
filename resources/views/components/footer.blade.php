@@ -32,7 +32,23 @@
 <!-- Bitcore Js -->
 <script src="{{ asset('/bower_components/bitcore-lib/bitcore-lib.js')}}"></script>
 
+{{-- Clipboard - plugin to copy text to clipboard --}}
+<script src="{{ asset('/bower_components/clipboard/dist/clipboard.min.js')}}"></script>
+
+<!-- Bootstrap Notify Plugin Js -->
+<script src="{{ asset('/bower_components/adminbsb-materialdesign/plugins/bootstrap-notify/bootstrap-notify.js')}}"></script>
+
 <script type="text/javascript">
+
+	@if(Request::is('transactions/request'))
+		console.log('test');
+		new Clipboard('#copyBtn', {
+			target: function(trigger) {
+				console.log('COPPIED');
+			}
+		});
+	@endif
+
 	@if(Request::is('register'))
 		generateAddress();
 

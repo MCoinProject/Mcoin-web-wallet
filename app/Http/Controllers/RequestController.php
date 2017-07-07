@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Wallet;
 use App\RequestAsset;
 // use App\User;
+use App\Jobs\SendEmail;
 
 use Validator;
 use stdClass;
@@ -29,15 +30,16 @@ class RequestController extends Controller
     public function sendRequest(Request $request)
     {
     	$response = new stdClass();
-    	// $user = Auth::user();
+    	$user = Auth::user();
+        $success = false;
 
     	$errors = array();
 
     	// Validate data according to necessity
     	$validator = Validator::make($request->all(), [
-    		'address' => 'required|max:255'
-    		'amount' => 'required|max:255',
-    		'email' => 'required|email|max:255',
+    		// 'address' => 'required|max:255'
+    		'amount' => 'required|numeric',
+    		'email' => 'required|email',
     		'description' => 'max:255|nullable'
     	]);
 
@@ -46,6 +48,8 @@ class RequestController extends Controller
     	} else {
     		// Create Request
     		$newRequest = RequestAsset::create([
+                'user_id' => $user->id,
+                'coin_id' => 3,
     			'amount' => $request->amount,
     			'email' => $request->email,
     			'description' => $request->description
@@ -53,10 +57,15 @@ class RequestController extends Controller
 
     		if($newRequest) {
     			$success = true;
-    			$response->data = $newRequest;
+    			$message = "Your request has been sent";
+
+                dispatch(new SendEmail($user, $request->amount, null, null, $request->email, 'request'));
     		} else {
-    			$response->message = $message;
+    			$message = "Your request failed to be sent";
     		}
+
+            $response->success = $success;
+            $response->message = $message;
 
     		return response()->json($response);
     	}

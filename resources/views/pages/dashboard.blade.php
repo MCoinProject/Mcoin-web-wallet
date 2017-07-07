@@ -27,14 +27,14 @@
 	    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	        <div class="card">
 	            <div class="header">
-	                <h2>HISTORY</h2>
+	                <h2>TRANSACTION HISTORY</h2>
 	            </div>
 	            <div class="body table-responsive">
 	                <table class="table table-striped table-hover">
 	                    <thead>
 	                        <tr>
-	                            <th>Amount</th>
 	                            <th>Address</th>
+	                            <th>Amount</th>
 	                            <th>Type</th>
 	                            <th>Date</th>
 	                        </tr>
@@ -42,20 +42,23 @@
 	                    <tbody>
 	                    	@foreach($transfers as $transfer)
 	                        <tr>
-	                            <td>{{ $transfer->amount }}</td>
 	                            <td>{{ $transfer->receiver_address }}</td>
+	                            <td>{{ $transfer->amount }}</td>
 	                            <td>
 	                            	@if($transfer->sender_address == Auth::user()->wallet->address)
-	                            	Transfer
+	                            	<span class="col-orange">Transfer</span>
 	                            	@else
-	                            	Receive
+	                            	<span class="col-teal">Receive</span>
 	                            	@endif
 	                            </td>
-	                            <td>{{ $transfer->created_at }}</td>
+	                            <td>{{ Carbon\Carbon::parse($transfer->created_at)->format('d M Y, G:i a') }}</td>
 	                        </tr>
 	                        @endforeach
 	                    </tbody>
 	                </table>
+	                <div class="col-sm-12">
+	                	{{ $transfers->links() }}
+	                </div>
 	            </div>
 	        </div>
 	    </div>

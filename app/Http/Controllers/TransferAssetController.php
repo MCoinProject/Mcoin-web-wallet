@@ -40,7 +40,7 @@ class TransferAssetController extends Controller
     			'sender_address' => $user->wallet->address,
     			'receiver_address' => $request->address,
     			'amount' => $request->amount,
-                'email' => $request->email,
+                'target_email' => $request->email,
                 'code' => $code,
     			'status' => 'pending',
     		]);
@@ -49,7 +49,7 @@ class TransferAssetController extends Controller
     			$message = "A confirmation link was sent to your email. Please click on the link to proceed.";
     			$success = true;
 
-                dispatch(new SendEmail($user, $request->amount, $request->address, $code, 'transfer'));
+                dispatch(new SendEmail($user, $request->amount, $request->address, $code, null, 'transfer'));
 
     		} else {
     			$message = "Transfer asset failed";
@@ -80,6 +80,9 @@ class TransferAssetController extends Controller
         if($res == 1){
             $success = true;
             $message = "Transfer successful!";
+
+            dispatch(new SendEmail($transfer->user, $transfer->amount, null, null, $transfer->target_email, 'receive'));
+
         } else if ($res == 2) {
             $message = "Transfer have been validated!";
         }

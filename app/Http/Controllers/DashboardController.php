@@ -20,6 +20,7 @@ class DashboardController extends Controller
 
     	$transfers = TransferAsset::orWhere('sender_address', $user->wallet->address)
         ->orWhere('receiver_address', $user->wallet->address)
+        ->orderBy('created_at', 'desc')
         ->paginate(5);
 
     	///return data and display to the page

@@ -20,19 +20,21 @@ class SendEmail implements ShouldQueue
     protected $address;
     protected $code;
     protected $type;
+    protected $targetEmail;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(User $user, $amount, $address, $code, $type)
+    public function __construct(User $user, $amount, $address, $code, $targetEmail, $type)
     {
         $this->user = $user;
         $this->amount = $amount;
         $this->address = $address;
         $this->code = $code;
         $this->type = $type;
+        $this->targetEmail = $targetEmail;
     }
 
     /**
@@ -47,13 +49,16 @@ class SendEmail implements ShouldQueue
         $address = $this->address;
         $code = $this->code;
         $type = $this->type;
+        $targetEmail = $this->targetEmail;
 
         $mailer = new EmailController();
 
         if($type == 'transfer') {
             $mailer->notifyTransfer($user, $amount, $address, $code);
+        } else if($type == 'request') {
+            $mailer->notifyRequest($targetEmail, $user, $amount);
         } else {
-            // $mailer->notifyTransfer($user, $amount, $address, $code);
+            $mailer->notifyReceive($targetEmail, $user, $amount);
         }
     }
 }

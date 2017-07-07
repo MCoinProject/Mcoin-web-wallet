@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Wallet;
 use App\Profile;
+use App\LoginHistory;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -82,6 +83,14 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'phone_number' => $data['phone_number']
         ]);
+
+        ///Stores ip address and last login value in array
+        $args = array(
+            'ip_address' => \Request::ip(),
+            'user_id' => $newUser->id
+        );
+
+        LoginHistory::create($args);
 
         return $newUser;
     }

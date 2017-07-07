@@ -90,45 +90,64 @@
         // Transfer assets to another wallet
         function sendForm (){
 
-          var apiLink = '/transactions/transfer/add';
+            if($('#amount').val() > 0 && $('#address').val() != "" && $('#email').val() != "")
+            {
+                var apiLink = '/transactions/transfer/add';
 
-           // Get data from form
-           var datas = {
-              'address': $('#address').val(),
-              'amount': $('#amount').val(),
-              'email': $('#email').val()
-           };
+                // Get data from form
+                var datas = {
+                    'address': $('#address').val(),
+                    'amount': $('#amount').val(),
+                    'email': $('#email').val()
+                };
 
-           console.log(datas);
-
-           // Ajax request to the api
-           $.ajax({
-              url: apiLink,
-              type:'post',
-              data: datas,
-              headers: {
-                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-              },
-              success:function(result){
-                 if(result.success){
-                    swal('SUCCESS', result.message, 'success').then(function() {
-                       window.location = "/wallet";
-                    });
-                 }else{
-                    var msg = "";
-                    if(typeof result.message === 'object'){
-                       for (var key in result.message) {
-                          if (result.message.hasOwnProperty(key)) {
-                             msg += result.message[key][0]+"<br>";
-                          }
-                       }
-                    }else{
-                       msg += result.message;
+                swal({
+                    title: 'Confirm to transfer '+$('#amount').val()+'ETP ?',
+                    showCancelButton: true,
+                    confirmButtonText: 'Submit',
+                    showLoaderOnConfirm: true,
+                    preConfirm: function (result) {
+                        return new Promise(function (resolve, reject) {
+                // Ajax request to the api
+                $.ajax({
+                    url: apiLink,
+                    type:'post',
+                    data: datas,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success:function(result){
+                        resolve(result);
                     }
-                    swal('FAILED', msg, 'error');
-                 }
-              }
-           });
+                });
+                })
+                    },
+                    allowOutsideClick: false
+                }).then(function (result) {
+                    if(result.success){
+                        swal('SUCCESS', result.message, 'success').then(function() {
+                            window.location = "/wallet";
+                        });
+                    }else{
+                        var msg = "";
+                        if(typeof result.message === 'object'){
+                            for (var key in result.message) {
+                                if (result.message.hasOwnProperty(key)) {
+                                    msg += result.message[key][0]+"<br>";
+                                }
+                            }
+                        }else{
+                            msg += result.message;
+                        }
+                        swal('FAILED', msg, 'error');
+                    }
+                })
+            }
+            else
+            {
+                swal('FAILED', 'Please make sure to insert valid amount, email address, and wallet address', 'error');
+            }
+
         }
     </script>
 
