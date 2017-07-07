@@ -5140,12 +5140,74 @@ fieldset[disabled] .form-control {
     display: none !important; }
 
 /* Dropzone ==================================== */
-.dropzone {
+.dropzoneC {
   border: 2px solid transparent !important;
-  background-color: #eee !important; }
-  .dropzone .dz-message .drag-icon-cph .material-icons {
+  background-color: #eee !important;
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+}
+.dropzoneC:hover{
+  cursor: pointer;
+}
+
+  .dropzoneC .dz-message .drag-icon-cph .material-icons {
     font-size: 80px;
-    color: #777; }
+    color: #777; 
+
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    -ms-justify-content: center;
+    justify-content: center;
+
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
+  }
+
+  .dropzoneC .dz-message{
+    
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-flex-flow: column;
+    -moz-flex-flow: column;
+    -ms-flex-flow: column;
+    flex-flow: column;
+    
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    -ms-justify-content: center;
+    justify-content: center;
+
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
+  }
 
 .dz-drag-hover {
   border: 2px dashed #888 !important; }

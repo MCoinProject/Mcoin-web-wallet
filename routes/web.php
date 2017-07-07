@@ -62,6 +62,7 @@ Route::group(['middleware'=>'auth'] , function () {
 		Route::get('/', function () {
 			return view('pages.profile');
 		});
+		Route::post('/update', 'ProfileController@updateBasicInfo');
 	});
 
 	/*
