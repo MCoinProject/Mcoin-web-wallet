@@ -74,4 +74,12 @@ class User extends Authenticatable
     {
         return $this->getTotalReceived() - $this->getTotalTransfered();
     }
+
+    /*
+     * Get Activation code during registration
+     */
+    public function getActivation()
+    {
+        return $this->hasOne('App\Activation', 'user_id')->first();
+    }
 }

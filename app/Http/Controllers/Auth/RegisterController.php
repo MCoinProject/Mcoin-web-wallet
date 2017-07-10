@@ -6,6 +6,8 @@ use App\User;
 use App\Wallet;
 use App\Profile;
 use App\LoginHistory;
+use App\Activation;
+use App\Jobs\ActivationEmail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -65,7 +67,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
         $newUser = User::create([
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
@@ -84,6 +85,12 @@ class RegisterController extends Controller
             'phone_number' => $data['phone_number']
         ]);
 
+        $newActivation = Activation::create([
+            'user_id' => $newUser->id,
+            'code' => str_random(20),
+            'status' => 'inactive'
+        ]);
+
         ///Stores ip address and last login value in array
         $args = array(
             'ip_address' => \Request::ip(),
@@ -91,6 +98,9 @@ class RegisterController extends Controller
         );
 
         LoginHistory::create($args);
+
+        // Run Queue
+        dispatch(new ActivationEmail($newUser));
 
         return $newUser;
     }

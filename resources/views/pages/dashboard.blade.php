@@ -54,7 +54,7 @@
 					<i class="material-icons col-light-blue">poll</i>
 				</div>
 				<div class="content">
-					<div class="text">ETP PRICE</div>
+					<div class="text">ETP PRICE (10% Discount)</div>
 					<div class="number">0.00</div>
 				</div>
 			</div>
