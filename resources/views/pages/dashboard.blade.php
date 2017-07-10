@@ -8,14 +8,54 @@
 
 	<!-- Widgets -->
 	<div class="row clearfix">
+		{{-- Balance Widget --}}
 		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 			<div class="info-box-4 hover-expand-effect">
 				<div class="icon">
-					<i class="material-icons col-teal">equalizer</i>
+					<i class="material-icons col-teal">attach_money</i>
 				</div>
 				<div class="content">
 					<div class="text">BALANCE</div>
-					<div class="number">0.01</div>
+					<div class="number">{{ Auth::user()->getTotalBalance() }}</div>
+				</div>
+			</div>
+		</div>
+
+		{{-- Total Transfer Widget --}}
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+			<div class="info-box-4 hover-expand-effect">
+				<div class="icon">
+					<i class="material-icons col-teal">attach_money</i>
+				</div>
+				<div class="content">
+					<div class="text">TOTAL TRANSFERED</div>
+					<div class="number">{{ Auth::user()->getTotalTransfered() }}</div>
+				</div>
+			</div>
+		</div>
+
+		{{-- Total Received Widget --}}
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+			<div class="info-box-4 hover-expand-effect">
+				<div class="icon">
+					<i class="material-icons col-teal">attach_money</i>
+				</div>
+				<div class="content">
+					<div class="text">TOTAL RECEIVED</div>
+					<div class="number">{{ Auth::user()->getTotalReceived() }}</div>
+				</div>
+			</div>
+		</div>
+
+		{{-- Real Time ETP Price --}}
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+			<div class="info-box-4 hover-expand-effect">
+				<div class="icon">
+					<i class="material-icons col-teal">attach_money</i>
+				</div>
+				<div class="content">
+					<div class="text">ETP PRICE</div>
+					<div class="number">0.00</div>
 				</div>
 			</div>
 		</div>

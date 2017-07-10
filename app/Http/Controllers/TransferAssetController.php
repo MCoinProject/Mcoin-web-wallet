@@ -13,7 +13,10 @@ use App\TransferAsset;
 use App\Jobs\SendEmail;
 
 class TransferAssetController extends Controller
-{
+{   
+    /*
+     *  Transfer Asset Function
+     */
     public function transferAset(Request $request)
     {
     	$response = new stdClass();
@@ -64,6 +67,9 @@ class TransferAssetController extends Controller
     	return response()->json($response);
     }
 
+    /*
+     * Validate Transfer Function
+     */
     public function validateTransfer(Request $request)
     {
         $transfer = TransferAsset::where('code', $request->txn)->first();
@@ -71,6 +77,7 @@ class TransferAssetController extends Controller
         $message = "Invalid code!";
         $success = false;
 
+        // If transfer exist and not yet succeed
         if($transfer && $transfer->status != 'success'){
             $res = TransferAsset::where('id', $transfer->id)->update(['status' => 'success']);
         } else {
@@ -87,7 +94,7 @@ class TransferAssetController extends Controller
             $message = "Transfer have been validated!";
         }
 
-        ///return data and display to the page
+        // Return data and display to the page
         $page_settings = array(
             'success' => $success,
             'message' => $message,

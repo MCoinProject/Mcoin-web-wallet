@@ -13,7 +13,10 @@ use App\TransferAsset;
 use App\User;
 
 class DashboardController extends Controller
-{
+{   
+    /*
+     *  Get data to be displayed in wallet page
+     */
     public function getData()
     {
         $user =  Auth::user();
@@ -30,4 +33,6 @@ class DashboardController extends Controller
 
     	return view('pages.dashboard')->with($page_settings);
     }
+
+   
 }

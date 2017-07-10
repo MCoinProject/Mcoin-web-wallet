@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\TransferAsset;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -37,5 +39,32 @@ class User extends Authenticatable
     public function getProfileAttribute()
     {
         return $this->hasOne('App\Profile', 'user_id')->first();
+    }
+
+
+    /*
+     * Get total transfered amount in wallet
+     */
+    public function getTotalTransfered()
+    {
+        return TransferAsset::where('user_id', $this->id)->sum('amount');
+    }
+
+    /*
+     * Get total received amount in wallet
+     */
+    public function getTotalReceived()
+    {
+        return TransferAsset::where('receiver_address', $this->receiver_address)
+        ->where('status', 'success')
+        ->sum('amount');
+    }
+
+    /*
+     * Get total balance amount in wallet
+     */
+    public function getTotalBalance()
+    {
+        return $this->getTotalReceived() - $this->getTotalTransfered();
     }
 }
