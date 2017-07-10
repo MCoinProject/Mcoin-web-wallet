@@ -2,7 +2,7 @@
     <!-- User Info -->
     <div class="user-info">
         <div class="image">
-            <img src="{{ asset('/images/default_avatar.png') }}" width="48" height="48" alt="User" />
+            <img src="{{!empty(Auth::user()->profile->profile_picture) ? "/photos/".Auth::user()->profile->profile_picture : asset("/images/default_avatar.png") }}" width="48" height="48" alt="User" />
         </div>
         <div class="info-container">
             <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -5140,7 +5140,7 @@ fieldset[disabled] .form-control {
     display: none !important; }
 
 /* Dropzone ==================================== */
-.dropzoneC {
+.dropzone {
   border: 2px solid transparent !important;
   background-color: #eee !important;
 
@@ -5160,11 +5160,11 @@ fieldset[disabled] .form-control {
   -ms-align-items: center;
   align-items: center;
 }
-.dropzoneC:hover{
+.dropzone:hover{
   cursor: pointer;
 }
 
-  .dropzoneC .dz-message .drag-icon-cph .material-icons {
+  .dropzone .dz-message .drag-icon-cph .material-icons {
     font-size: 80px;
     color: #777; 
 
@@ -5185,7 +5185,7 @@ fieldset[disabled] .form-control {
     align-items: center;
   }
 
-  .dropzoneC .dz-message{
+  .dropzone .dz-message{
     
     display: -webkit-box;
     display: -moz-box;

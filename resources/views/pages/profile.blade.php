@@ -88,7 +88,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="body">
-                                <div id="lalala" class="dropzoneC" style="width: 100%; min-height: 200px;">
+                                <div id="picture_upload" class="dropzone" style="width: 100%; min-height: 200px;">
                                     <div class="dz-message">
                                         <div class="drag-icon-cph">
                                             <i class="material-icons">image</i>

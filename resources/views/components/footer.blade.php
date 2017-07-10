@@ -42,9 +42,22 @@
 <script type="text/javascript">
 
 	@if(Request::is('profile'))
-		console.log('test');
-		// $("div#lalala").dropzone({ url: "/file/post" });
-		var myDropzone = new Dropzone("div#lalala", { url: "/file/post"});
+		Dropzone.autoDiscover = false;
+		$("#picture_upload").dropzone({
+			paramName: 'profile_picture',
+			url: '/profile/picture/update',
+			clickable: true,
+			enqueueForUpload: true,
+			maxFilesize: 2, // 2mb
+			uploadMultiple: false,
+			dictDefaultMessage: "Drag your images",
+			// addRemoveLinks: true,
+			headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+		});
+
+		$("#uploadModal").on("hidden.bs.modal", function () {
+		    window.location = "/profile";
+		});
 	@endif
 
 	@if(Request::is('transactions/request'))

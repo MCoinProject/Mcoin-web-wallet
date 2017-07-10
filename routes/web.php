@@ -24,6 +24,14 @@ Route::get('/', function () {
     
 });
 
+Route::get('photos/{filename}', function ($filename){
+	if($filename == 'default_avatar.png') {
+		return Image::make(public_path('/images/default_avatar.png'))->response();
+	}else{
+		return Image::make(storage_path('photos/profile_pictures/' . $filename))->response();
+	}
+});
+
 Auth::routes();
 
 Route::get('/validate', 'TransferAssetController@validateTransfer');
@@ -63,6 +71,7 @@ Route::group(['middleware'=>'auth'] , function () {
 			return view('pages.profile');
 		});
 		Route::post('/update', 'ProfileController@updateBasicInfo');
+		Route::post('/picture/update', 'ProfileController@changeProfilePicture');
 	});
 
 	/*
