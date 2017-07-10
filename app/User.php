@@ -29,7 +29,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public $appends = ['wallet', 'profile'];
+    public $appends = ['wallet', 'profile', 'max_transfer'];
 
     public function getWalletAttribute()
     {
@@ -41,6 +41,13 @@ class User extends Authenticatable
         return $this->hasOne('App\Profile', 'user_id')->first();
     }
 
+    public function getMaxTransferAttribute()
+    {
+        // Declare Miner Fee
+        $miner_fee = 0.01;
+
+        return $this->getTotalBalance() - $miner_fee;
+    }
 
     /*
      * Get total transfered amount in wallet

@@ -29,36 +29,45 @@ class TransferAssetController extends Controller
     	    'email' => 'required|email',
     	]);
 
-    	///if fails, throws error message
+    	// If fails, throws error message
     	if ($validator->fails()) 
     	{
     	    $message = $validator->errors();
     	    $success = false;
     	} 
     	else 
-    	{
-            $code = str_random(20);
-    		$newTransferAsset = TransferAsset::create([
-    			'user_id' => $user->id,
-    			'sender_address' => $user->wallet->address,
-    			'receiver_address' => $request->address,
-    			'amount' => $request->amount,
-                'target_email' => $request->email,
-                'code' => $code,
-    			'status' => 'pending',
-    		]);
+    	{  
+            // If Balance is not sufficient
+            if($user->max_transfer > 0 && $user->max_transfer > $request->amount) {
+                
+                // Create random code to be append to email
+                $code = str_random(20);
 
-    		if($newTransferAsset) {
-    			$message = "A confirmation link was sent to your email. Please click on the link to proceed.";
-    			$success = true;
+                $newTransferAsset = TransferAsset::create([
+                    'user_id' => $user->id,
+                    'sender_address' => $user->wallet->address,
+                    'receiver_address' => $request->address,
+                    'amount' => $request->amount,
+                    'target_email' => $request->email,
+                    'code' => $code,
+                    'status' => 'pending',
+                ]);
 
-                dispatch(new SendEmail($user, $request->amount, $request->address, $code, null, 'transfer'));
+                // If transfer success
+                if($newTransferAsset) {
+                    $message = "A confirmation link was sent to your email. Please click on the link to proceed.";
+                    $success = true;
 
-    		} else {
-    			$message = "Transfer asset failed";
-    			$success = false;
-    		}
-    		
+                    dispatch(new SendEmail($user, $request->amount, $request->address, $code, null, 'transfer'));
+
+                } else {
+                    $message = "Transfer asset failed";
+                    $success = false;
+                }
+            } else {
+                $message = "Insufficient Balance! </br> Your current balance is <strong>".$user->getTotalBalance()." ETP</strong>";
+                $success = false;
+            }        
     	}
 
     	$response->message = $message;
