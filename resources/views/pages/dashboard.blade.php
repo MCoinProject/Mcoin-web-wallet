@@ -12,7 +12,7 @@
 		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 			<div class="info-box-4 hover-expand-effect">
 				<div class="icon">
-					<i class="material-icons col-teal">attach_money</i>
+					<i class="material-icons col-light-green">attach_money</i>
 				</div>
 				<div class="content">
 					<div class="text">BALANCE</div>
@@ -25,7 +25,7 @@
 		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 			<div class="info-box-4 hover-expand-effect">
 				<div class="icon">
-					<i class="material-icons col-teal">attach_money</i>
+					<i class="material-icons col-orange">call_made</i>
 				</div>
 				<div class="content">
 					<div class="text">TOTAL TRANSFERED</div>
@@ -38,7 +38,7 @@
 		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 			<div class="info-box-4 hover-expand-effect">
 				<div class="icon">
-					<i class="material-icons col-teal">attach_money</i>
+					<i class="material-icons col-teal">call_received</i>
 				</div>
 				<div class="content">
 					<div class="text">TOTAL RECEIVED</div>
@@ -51,7 +51,7 @@
 		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 			<div class="info-box-4 hover-expand-effect">
 				<div class="icon">
-					<i class="material-icons col-teal">attach_money</i>
+					<i class="material-icons col-light-blue">poll</i>
 				</div>
 				<div class="content">
 					<div class="text">ETP PRICE</div>
