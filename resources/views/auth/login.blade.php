@@ -26,10 +26,10 @@
                     </div>
                 @endif
 
-                @if ( isset($message) && $message != "" )
+                @if ( Session::get('message') && Session::get('message') != "" )
                     <div class="alert bg-red alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                        {{$message}}
+                        {{Session::get('message')}}
                     </div>
                 @endif
 

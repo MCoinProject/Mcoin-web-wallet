@@ -27,7 +27,7 @@ Route::get('/', function () {
 	} 
 	else if (Auth::check() && (Auth::user()->getActivation()->status == 'inactive')) {
 		Auth::logout();
-		return redirect('login');
+		return redirect('login')->with('message', 'Please check your email for account activation link');
 	}   
 	else {
 		return redirect('login');

@@ -70,7 +70,7 @@ class RegisterController extends Controller
             return $this->registered($request, $user)
                             ?: redirect($this->redirectPath());
         } else {
-            return redirect($this->redirectPath());
+            return redirect('/login')->with('message', 'An error occured. Please submit a report and include this code [ERX: 001]');
         }
     }
 
