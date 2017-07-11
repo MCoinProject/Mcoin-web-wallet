@@ -22,6 +22,8 @@ function skinChanger() {
         $this.addClass('active');
 
         $body.addClass('theme-' + $this.data('theme'));
+
+        localStorage.setItem("theme", $this.data('theme'));
     });
 }
 

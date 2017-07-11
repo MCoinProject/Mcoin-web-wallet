@@ -19,7 +19,7 @@
 {{-- <script src="{{ asset('/bower_components/adminbsb-materialdesign/js/pages/forms/advanced-form-elements.js')}}"></script> --}}
 
 <!-- Demo Js -->
-{{-- <script src="{{ asset('/bower_components/adminbsb-materialdesign/js/demo.js')}}"></script> --}}
+<script src="{{ asset('/bower_components/adminbsb-materialdesign/js/demo.js')}}"></script>
 
 <!-- Validation Plugin Js -->
 <script src="{{ asset('/bower_components/adminbsb-materialdesign/plugins/jquery-validation/jquery.validate.js')}}"></script>
@@ -72,26 +72,19 @@
 		});
 	@endif
 
-	@if(Request::is('register'))
-		// generateAddress();
+	$( document ).ready(function() {
+		if(localStorage.getItem("theme")){
 
-	 //    function generateAddress() {
-	 //        var bitcore = require('bitcore-lib');
+			console.log('saved theme '+localStorage.getItem("theme"));
+			var $body = $('body');
 
-	 //        var privateKey = new bitcore.PrivateKey();
-	 //        var publicKey = new bitcore.PublicKey(privateKey);
+			var existTheme = $('.right-sidebar .demo-choose-skin li.active').data('theme');
 
-	 //        var privateStr = privateKey.toString();
-	 //        var publicStr = publicKey.toString();
-	 //        var address = publicKey.toAddress().toString();
+			$('.right-sidebar .demo-choose-skin li').removeClass('active');
+			$body.removeClass('theme-' + existTheme);
 
-	 //        console.log(privateStr);
-	 //        console.log(publicStr);
-	 //        console.log(address);
-
-	 //        $('#private_key').val(privateStr);
-	 //        $('#public_key').val(publicStr);
-	 //        $('#address').val(address);
-	 //    }
-    @endif
+			$body.addClass('theme-' + localStorage.getItem("theme"));
+		}
+	});
+	
 </script>
