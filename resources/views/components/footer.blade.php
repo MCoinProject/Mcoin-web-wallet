@@ -36,6 +36,9 @@
 <!-- Custom Js -->
 <script src="{{ asset('/bower_components/adminbsb-materialdesign/js/admin.js')}}"></script>
 
+{{-- Captcha --}}
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
 <script type="text/javascript">
 
 	@if(Request::is('profile'))

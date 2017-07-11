@@ -42,6 +42,19 @@ class LoginController extends Controller
     }
 
     /**
+     * Custom Validation using recaptcha
+     */
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+            $this->username() => 'required', 
+            'password' => 'required',
+            'g-recaptcha-response'=>'required|captcha'
+            // new rules here
+        ]);
+    }
+
+    /**
      * This function will automatically called after successful login.
      * It will redirect to wallet page and store ip address in db
      *

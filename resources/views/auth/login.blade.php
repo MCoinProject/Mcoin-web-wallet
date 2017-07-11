@@ -15,13 +15,15 @@
         <div class="card">
             <div class="body">
                 {{-- Display error message --}}
-                @if ( $errors->has('email') || $errors->has('password') )
+                @if ( $errors->has('email') || $errors->has('password') || $errors->has('g-recaptcha-response') )
                     <div class="alert bg-red alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                         @if($errors->has('email'))
                             {{ $errors->first('email') }}
-                        @else
+                        @elseif($errors->has('password'))
                             {{ $errors->first('password') }}
+                        @else
+                            {{ $errors->first('g-recaptcha-response') }}
                         @endif
                     </div>
                 @endif
@@ -58,6 +60,11 @@
                         <div class="form-line">
                             <input type="password" class="form-control" name="password" placeholder="Password" required>
                         </div>
+                    </div>
+
+                    <div class="row">  
+                        {{-- captcha --}}
+                        <div class="g-recaptcha col-sm-12" data-sitekey="{{env('NOCAPTCHA_SITEKEY')}}"></div>
                     </div>
                     
                     <div class="row">

@@ -187,6 +187,9 @@ return [
         */
         'Kozz\Laravel\Providers\Guzzle',
 
+        // CAPTCHA
+        Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class
+
     ],
 
     /*
@@ -244,7 +247,7 @@ return [
         /*
         *   GUZZLE
         */
-        'Guzzle' => 'Kozz\Laravel\Facades\Guzzle'
+        'Guzzle' => 'Kozz\Laravel\Facades\Guzzle',
 
     ],
 

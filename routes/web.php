@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('site-register', 'Auth\AuthController@siteRegister');
+Route::post('site-register', 'Auth\AuthController@siteRegisterPost');
+
 ///return welcome page 
 Route::get('/', function () {
 	// if (Auth::check()) 

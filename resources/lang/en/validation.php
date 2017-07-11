@@ -100,8 +100,9 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'g-recaptcha-response' => [
+            'required' => 'Please check the captcha box',
+            'captcha' => 'Please ensure that you are not a robot',
         ],
     ],
 

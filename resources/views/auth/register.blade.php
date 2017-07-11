@@ -15,13 +15,19 @@
         <div class="card">
             <div class="body">
                 {{-- Display error message --}}
-                @if ( $errors->has('email') || $errors->has('password') )
+                @if ( $errors->has('email') || $errors->has('password') || $errors->has('name') || $errors->has('phone_number') || $errors->has('g-recaptcha-response'))
                     <div class="alert bg-red alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                         @if($errors->has('email'))
                             {{ $errors->first('email') }}
-                        @else
+                        @elseif($errors->has('password'))
                             {{ $errors->first('password') }}
+                        @elseif($errors->has('name'))
+                            {{ $errors->first('name') }}
+                         @elseif($errors->has('phone_number'))
+                            {{ $errors->first('phone_number') }}
+                         @elseif($errors->has('g-recaptcha-response'))
+                            {{ $errors->first('g-recaptcha-response') }}
                         @endif
                     </div>
                 @endif
@@ -59,7 +65,7 @@
                             <i class="material-icons">contact_phone</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="phone_number" placeholder="Phone Number" required>
+                            <input type="number" class="form-control" name="phone_number" placeholder="Phone Number" required>
                         </div>
                     </div>
 
@@ -82,13 +88,15 @@
                             <input type="password" class="form-control" name="password_confirmation" minlength="6" placeholder="Confirm Password" required>
                         </div>
                     </div>
-                    <input type="hidden" name="private_key" id="private_key">
-                    <input type="hidden" name="public_key" id="public_key">
-                    <input type="hidden" name="address" id="address">
                     {{-- <div class="form-group">
                         <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
                         <label for="terms">I read and agree to the <a href="javascript:void(0);">terms of usage</a>.</label>
                     </div> --}}
+
+                    <div class="row">  
+                        {{-- captcha --}}
+                        <div class="g-recaptcha col-sm-12" data-sitekey="{{env('NOCAPTCHA_SITEKEY')}}"></div>
+                    </div>
 
                     {{-- Sign Up Button --}}
                     <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">SIGN UP</button>
