@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\File;
 
 use App\Profile;
 use App\User;
+use App\Activation;
+
 use Validator;
 use stdClass;
 
@@ -115,5 +117,36 @@ class ProfileController extends Controller
         $response->message = $message;
 
 		return response()->json($response);
+    }
+
+    /*
+     *  Activate User Email
+     */
+    public function userActivation(Request $request)
+    {
+        $activation = Activation::where('code', $request->act)->first();
+
+        $res = 0;
+        $message = "Invalid code!";
+
+        // If user exist and not yet activated
+        if($activation && $activation->status != 'active'){
+            $res = Activation::where('id', $activation->id)->update(['status' => 'active']);
+        } else {
+            $res = 2;
+        }
+
+        if($res == 1){
+            $message = "Your account have been successfully activated!";
+        } else if ($res == 2) {
+            $message = "Your account have already been activated";
+        }
+
+        // Return data and display to the page
+        $page_settings = array(
+            'message' => $message,
+        );
+
+        return view('results.transfer')->with($page_settings);
     }
 }

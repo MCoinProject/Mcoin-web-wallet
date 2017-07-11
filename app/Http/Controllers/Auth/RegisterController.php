@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Wallet;
 use App\Profile;
+use App\Activation;
+use App\Jobs\ActivationEmail;
 use App\LoginHistory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -115,6 +117,12 @@ class RegisterController extends Controller
             'phone_number' => $data['phone_number']
         ]);
 
+        $newActivation = Activation::create([
+            'user_id' => $newUser->id,
+            'code' => str_random(20),
+            'status' => 'inactive'
+        ]);
+
         ///Stores ip address and last login value in array
         $args = array(
             'ip_address' => \Request::ip(),
@@ -122,6 +130,9 @@ class RegisterController extends Controller
         );
 
         LoginHistory::create($args);
+
+        // Run Queue
+        dispatch(new ActivationEmail($newUser));
 
         return $newUser;
     }

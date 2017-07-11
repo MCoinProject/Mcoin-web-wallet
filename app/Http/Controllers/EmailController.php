@@ -42,4 +42,23 @@ class EmailController extends Controller
             $message->to($targetEmail, '')->subject("ETP Wallet - ETP Received");
         });
     }
+
+    /*
+     * Send activation email
+     */
+    public function notifyActivate($user)
+    {   
+        // Activation URL
+        $url = url('/activation?act='.$user->getActivation()->code);
+
+        // Create Log file
+        Log::useFiles(storage_path().'/logs/activation.log', 'info');
+        Log::info('Email : '.$user->email);
+            
+        // Send Activation Email
+        Mail::send('emails.activate_notification', ['user' => $user, 'url' => $url], 
+            function ($message) use ($user) {
+            $message->to($user->email, '')->subject("ETP Wallet - ETP Wallet Activation");
+        });
+    }
 }

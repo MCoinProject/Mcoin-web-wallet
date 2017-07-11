@@ -13,17 +13,30 @@
 
 ///return welcome page 
 Route::get('/', function () {
-	if (Auth::check()) 
-	{
+	// if (Auth::check()) 
+	// {
+	//    return redirect('wallet');
+	// }
+	// else
+	// {
+	// 	return redirect('login');
+	// }
+
+	if (Auth::check() && (Auth::user()->getActivation()->status == 'active')) {
 	   return redirect('wallet');
-	}
-	else
-	{
+	} 
+	else if (Auth::check() && (Auth::user()->getActivation()->status == 'inactive')) {
+		Auth::logout();
 		return redirect('login');
-	}
-    
+	}   
+	else {
+		return redirect('login');
+	}    
 });
 
+/*
+*	Upload Photo
+*/
 Route::get('photos/{filename}', function ($filename){
 	if($filename == 'default_avatar.png') {
 		return Image::make(public_path('/images/default_avatar.png'))->response();
@@ -34,7 +47,15 @@ Route::get('photos/{filename}', function ($filename){
 
 Auth::routes();
 
+/*
+*	Validate Transfer Asset
+*/
 Route::get('/validate', 'TransferAssetController@validateTransfer');
+
+/*
+*	Activate Account Registration
+*/
+Route::get('/activation', 'ProfileController@userActivation');
 
 ///return admin page, where admin is the prefix to the route inside the group
 Route::group(['middleware'=>'auth'] , function () {
