@@ -58,7 +58,7 @@
                 </a>
             </li>
             <li>
-                <a onclick="window.location = '/logout'">
+                <a onclick="localStorage.clear(); window.location = '/logout';">
                     <i class="material-icons">input</i>
                     <span>Sign Out</span>
                 </a>

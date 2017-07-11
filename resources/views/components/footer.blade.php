@@ -73,18 +73,21 @@
 	@endif
 
 	$( document ).ready(function() {
-		if(localStorage.getItem("theme")){
 
-			console.log('saved theme '+localStorage.getItem("theme"));
-			var $body = $('body');
+		@if(!Request::is('login') && !Request::is('register') && !Request::is('password/reset'))
+			if(localStorage.getItem("theme")){
 
-			var existTheme = $('.right-sidebar .demo-choose-skin li.active').data('theme');
+				console.log('saved theme '+localStorage.getItem("theme"));
+				var $body = $('body');
 
-			$('.right-sidebar .demo-choose-skin li').removeClass('active');
-			$body.removeClass('theme-' + existTheme);
+				var existTheme = $('.right-sidebar .demo-choose-skin li.active').data('theme');
 
-			$body.addClass('theme-' + localStorage.getItem("theme"));
-		}
+				$('.right-sidebar .demo-choose-skin li').removeClass('active');
+				$body.removeClass('theme-' + existTheme);
+
+				$body.addClass('theme-' + localStorage.getItem("theme"));
+			}
+		@endif
 	});
 	
 </script>
