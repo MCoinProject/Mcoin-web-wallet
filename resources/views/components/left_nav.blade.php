@@ -57,8 +57,8 @@
                     <span>Profile</span>
                 </a>
             </li>
-            <li class="{{ Request::is('logout', 'logout/*') ? 'active' : '' }}">
-                <a href="/logout">
+            <li>
+                <a onclick="window.location = '/logout'">
                     <i class="material-icons">input</i>
                     <span>Sign Out</span>
                 </a>
@@ -69,7 +69,7 @@
     <!-- Footer -->
     <div class="legal">
         <div class="copyright">
-            &copy; {{date("Y")}} <a href="javascript:void(0);"> ETP Wallet</a>.
+            &copy; {{date("Y")}} <a href="/"> ETP Wallet</a>.
         </div>
         <div class="version">
             <b>Version: </b> 1.0.0

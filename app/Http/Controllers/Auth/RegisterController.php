@@ -6,9 +6,14 @@ use App\User;
 use App\Wallet;
 use App\Profile;
 use App\LoginHistory;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Auth\Events\Registered;
+
+use Illuminate\Container\Container;
+use App\Http\Controllers\KeyGenerator;
 
 class RegisterController extends Controller
 {
@@ -31,6 +36,7 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
+    protected $keyObj;
 
     /**
      * Create a new controller instance.
@@ -40,6 +46,30 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    /**
+    * Handle a registration request for the application.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
+    public function register(Request $request)
+    {
+        $keygen = new KeyGenerator();
+        $this->keyObj = $keygen->generateKey();
+
+        if($this->keyObj->success && $this->keyObj->status == 201){
+
+            $this->validator($request->all())->validate();
+            event(new Registered($user = $this->create($request->all())));
+            $this->guard()->login($user);
+
+            return $this->registered($request, $user)
+                            ?: redirect($this->redirectPath());
+        } else {
+            return redirect($this->redirectPath());
+        }
     }
 
     /**
@@ -73,9 +103,10 @@ class RegisterController extends Controller
 
         $newWallet = Wallet::create([
             'user_id' => $newUser->id,
-            'address' => $data['address'],
-            'private_key' => $data['private_key'],
-            'public_key' => $data['public_key']
+            'address' => $this->keyObj->result['address'],
+            'private_key' => $this->keyObj->result['private'],
+            'public_key' => $this->keyObj->result['public'],
+            'wif' => $this->keyObj->result['wif'],
         ]);
 
         $newProfile = Profile::create([

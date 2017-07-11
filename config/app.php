@@ -182,6 +182,11 @@ return [
         */
         Intervention\Image\ImageServiceProvider::class,
 
+        /*
+        *   GUZZLE
+        */
+        'Kozz\Laravel\Providers\Guzzle',
+
     ],
 
     /*
@@ -235,6 +240,11 @@ return [
         * IMAGE INTERVENTION
         */
         'Image' => Intervention\Image\Facades\Image::class,
+
+        /*
+        *   GUZZLE
+        */
+        'Guzzle' => 'Kozz\Laravel\Facades\Guzzle'
 
     ],
 

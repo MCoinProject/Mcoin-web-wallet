@@ -27,9 +27,6 @@
 <!-- Dropzone Plugin Js -->
 <script src="{{ asset('/bower_components/adminbsb-materialdesign/plugins/dropzone/dist/dropzone.js')}}"></script>
 
-<!-- Bitcore Js -->
-<script src="{{ asset('/bower_components/bitcore-lib/bitcore-lib.js')}}"></script>
-
 {{-- Clipboard - plugin to copy text to clipboard --}}
 <script src="{{ asset('/bower_components/clipboard/dist/clipboard.min.js')}}"></script>
 
@@ -70,23 +67,25 @@
 	@endif
 
 	@if(Request::is('register'))
-		generateAddress();
+		// generateAddress();
 
-	    function generateAddress() {
-	        var bitcore = require('bitcore-lib');
+	 //    function generateAddress() {
+	 //        var bitcore = require('bitcore-lib');
 
-	        var privateKey = new bitcore.PrivateKey();
-	        var publicKey = new bitcore.PublicKey(privateKey);
+	 //        var privateKey = new bitcore.PrivateKey();
+	 //        var publicKey = new bitcore.PublicKey(privateKey);
 
-	        var privateStr = privateKey.toWIF();
-	        var publicStr = privateKey.toPublicKey();
-	        var address = publicStr.toAddress().toString();
+	 //        var privateStr = privateKey.toString();
+	 //        var publicStr = publicKey.toString();
+	 //        var address = publicKey.toAddress().toString();
 
-	        console.log('test');
+	 //        console.log(privateStr);
+	 //        console.log(publicStr);
+	 //        console.log(address);
 
-	        $('#private_key').val(privateStr);
-	        $('#public_key').val(publicStr.toString());
-	        $('#address').val(address);
-	    }
+	 //        $('#private_key').val(privateStr);
+	 //        $('#public_key').val(publicStr);
+	 //        $('#address').val(address);
+	 //    }
     @endif
 </script>

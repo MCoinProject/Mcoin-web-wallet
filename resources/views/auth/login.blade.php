@@ -26,6 +26,13 @@
                     </div>
                 @endif
 
+                @if ( isset($message) && $message != "" )
+                    <div class="alert bg-red alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        {{$message}}
+                    </div>
+                @endif
+
                 {{-- Login Form --}}
                 <form id="sign_in" method="POST" action="{{ route('login') }}">
                     {{ csrf_field() }}

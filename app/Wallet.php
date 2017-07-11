@@ -18,6 +18,7 @@ class Wallet extends Model
         'user_id',
         'address',
         'private_key',
-        'public_key'
+        'public_key',
+        'wif'
     ];
 }
