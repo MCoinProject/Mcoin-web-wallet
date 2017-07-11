@@ -28,13 +28,14 @@ class DashboardController extends Controller
 
     	///return data and display to the page
     	$page_settings = array(
-    	    'transfers' => $transfers
+    	    'transfers' => $transfers,
+            'dnc_price' => $this->getDNCPrice()
     	);
 
     	return view('pages.dashboard')->with($page_settings);
     }   
 
-    function get_web_page( $url )
+    function dncRequest( $url )
     {
         $options = array(
             CURLOPT_RETURNTRANSFER => true,     // return web page
@@ -63,11 +64,14 @@ class DashboardController extends Controller
         return $header;
     }
 
-    function get_dnc_ask_price()
+    function getDNCPrice()
     {
-        $result = $this->get_web_page("https://nodejs.dinardirham.com:8488/rCeiDSZkp5XkcOdpSvOZCAimPZ7R3RgY/quotes/DNC_1DINAR");
+        $result = $this->dncRequest("https://nodejs.dinardirham.com:8488/rCeiDSZkp5XkcOdpSvOZCAimPZ7R3RgY/quotes/DNC_1DINAR");
         $resp = json_decode($result['content']);
-        return response()->json($resp);
-        // return ($resp->ask - ($resp->ask * 0.1));
+        if(isset($resp->ask)) {
+            // return response()->json($resp);
+            return ($resp->ask - ($resp->ask * 0.1));
+        }
+        return 0;
     }
 }
