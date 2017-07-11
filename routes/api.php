@@ -17,5 +17,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/dnc/price', 'DashboardController@get_dnc_ask_price');
+Route::get('/dnc/price', 'DashboardController@getDNCPrice');
 Route::get('/generate/key', 'KeyGenerator@generateKey');

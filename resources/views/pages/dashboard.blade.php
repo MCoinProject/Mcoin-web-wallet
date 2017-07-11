@@ -55,7 +55,7 @@
 				</div>
 				<div class="content">
 					<div class="text">ETP PRICE (10% Discount)</div>
-					<div class="number">0.00</div>
+					<div class="number">{{ $dnc_price }}</div>
 				</div>
 			</div>
 		</div>
@@ -80,20 +80,28 @@
 	                        </tr>
 	                    </thead>
 	                    <tbody>
-	                    	@foreach($transfers as $transfer)
-	                        <tr>
-	                            <td>{{ $transfer->receiver_address }}</td>
-	                            <td>{{ $transfer->amount }}</td>
-	                            <td>
-	                            	@if($transfer->sender_address == Auth::user()->wallet->address)
-	                            	<span class="col-orange">Transfer</span>
-	                            	@else
-	                            	<span class="col-teal">Receive</span>
-	                            	@endif
-	                            </td>
-	                            <td>{{ Carbon\Carbon::parse($transfer->created_at)->format('d M Y, G:i a') }}</td>
-	                        </tr>
-	                        @endforeach
+	                    	@if(count($transfers) > 0)
+		                    	@foreach($transfers as $transfer)
+		                        <tr>
+		                            <td>{{ $transfer->receiver_address }}</td>
+		                            <td>{{ $transfer->amount }}</td>
+		                            <td>
+		                            	@if($transfer->sender_address == Auth::user()->wallet->address)
+		                            	<span class="col-orange">Transfer</span>
+		                            	@else
+		                            	<span class="col-teal">Receive</span>
+		                            	@endif
+		                            </td>
+		                            <td>{{ Carbon\Carbon::parse($transfer->created_at)->format('d M Y, G:i a') }}</td>
+		                        </tr>
+		                        @endforeach
+		                    @else
+		                    	<tr>
+		                    		<td colspan="4" align="center">
+		                    			No data to be displayed
+		                    		</td>
+		                    	</tr>
+		                    @endif
 	                    </tbody>
 	                </table>
 	                <div class="col-sm-12">
