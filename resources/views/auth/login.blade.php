@@ -70,8 +70,8 @@
                     <div class="row">
                         {{-- Remember Me Tickbox --}}
                         <div class="col-xs-8 p-t-5">
-                            <input type="checkbox" name="remember" id="remember" class="filled-in chk-col-pink" {{ old('remember') ? 'checked' : '' }}>
-                            <label for="rememberme">Remember Me</label>
+                            <input type="checkbox" id="remember" class="filled-in chk-col-teal" {{ old('remember') ? 'checked' : '' }} />
+                            <label for="remember">Remember Me</label>
                         </div>
 
                         {{-- Sign In Button --}}

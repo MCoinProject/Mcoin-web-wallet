@@ -33,8 +33,11 @@
 <!-- Bootstrap Notify Plugin Js -->
 <script src="{{ asset('/bower_components/adminbsb-materialdesign/plugins/bootstrap-notify/bootstrap-notify.js')}}"></script>
 
-<!-- Custom Js -->
-<script src="{{ asset('/bower_components/adminbsb-materialdesign/js/admin.js')}}"></script>
+{{-- Hide this js if in this pages --}}
+@if(!Request::is('login') && !Request::is('register') && !Request::is('password/reset'))
+	<!-- Custom Js -->
+	<script src="{{ asset('/bower_components/adminbsb-materialdesign/js/admin.js')}}"></script>
+@endif
 
 {{-- Captcha --}}
 <script src='https://www.google.com/recaptcha/api.js'></script>
