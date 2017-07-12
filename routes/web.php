@@ -14,6 +14,10 @@
 Route::get('site-register', 'Auth\AuthController@siteRegister');
 Route::post('site-register', 'Auth\AuthController@siteRegisterPost');
 
+Route::get('/home', function () {
+	return redirect('/');
+});
+
 ///return welcome page 
 Route::get('/', function () {
 	// if (Auth::check()) 
