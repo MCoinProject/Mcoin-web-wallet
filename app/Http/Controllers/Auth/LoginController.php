@@ -64,7 +64,7 @@ class LoginController extends Controller
        
         ///Stores ip address and last login value in array
         $args = array(
-            'ip_address' => $request->getClientIp(true),
+            'ip_address' => $request->getClientIp(),
             'user_id' => $user->id
         );
 
