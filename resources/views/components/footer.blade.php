@@ -74,7 +74,7 @@
 
 	$( document ).ready(function() {
 
-		@if(!Request::is('login') && !Request::is('register') && !Request::is('password/reset'))
+		@if((!Request::is('login') && !Request::is('register') && !Request::is('password/reset')) || Request::is('login'))
 			if(localStorage.getItem("theme")){
 
 				console.log('saved theme '+localStorage.getItem("theme"));

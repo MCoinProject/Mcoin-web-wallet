@@ -14,6 +14,7 @@ class EmailController extends Controller
 
     	Log::useFiles(storage_path().'/logs/transfers.log', 'info');
         Log::info('User : '.$user->email.'; Transfer address : '.$address.'; Amount : '.$amount);
+        Log::useFiles(storage_path().'/logs/laravel.log', 'info');
         
         Mail::send('emails.transfer_notification', ['user' => $user, 'amount' => $amount, 'address' => $address, 'link' => $link], 
             function ($message) use ($user) {
@@ -25,6 +26,7 @@ class EmailController extends Controller
     {
         Log::useFiles(storage_path().'/logs/requests.log', 'info');
         Log::info('Requester : '.$requester->email.'; Target : '.$targetEmail.'; Amount : '.$amount);
+        Log::useFiles(storage_path().'/logs/laravel.log', 'info');
         
         Mail::send('emails.request_notification', ['target' => $targetEmail, 'amount' => $amount, 'requester' => $requester], 
             function ($message) use ($targetEmail) {
@@ -36,6 +38,7 @@ class EmailController extends Controller
     {
         Log::useFiles(storage_path().'/logs/received.log', 'info');
         Log::info('Sender : '.$user->email.'; Target : '.$targetEmail.'; Amount : '.$amount);
+        Log::useFiles(storage_path().'/logs/laravel.log', 'info');
         
         Mail::send('emails.receive_notification', ['target' => $targetEmail, 'amount' => $amount, 'user' => $user], 
             function ($message) use ($targetEmail) {
@@ -54,6 +57,7 @@ class EmailController extends Controller
         // Create Log file
         Log::useFiles(storage_path().'/logs/activation.log', 'info');
         Log::info('Email : '.$user->email);
+        Log::useFiles(storage_path().'/logs/laravel.log', 'info');
             
         // Send Activation Email
         Mail::send('emails.activate_notification', ['user' => $user, 'url' => $url], 
