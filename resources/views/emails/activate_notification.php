@@ -94,7 +94,7 @@
 		      
 		                <h2>Hello <?php echo $user->profile->name ?>,</h2>
 
-		                <p style="margin-bottom: 10px;">You have successfully registered with ETP Wallet. Please click on this link to activate you account. <a href="<?php echo $url; ?>"><?php echo $url; ?></a></p>
+		                <p style="margin-bottom: 10px;">You have successfully registered with ETP Wallet. Please click on this link to activate your account. <a href="<?php echo $url; ?>"><?php echo $url; ?></a></p>
 
 		                <p>Warm Regards,<br>
 		                ETP Wallet Team</p>
