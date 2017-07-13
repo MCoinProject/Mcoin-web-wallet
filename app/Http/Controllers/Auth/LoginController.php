@@ -62,7 +62,7 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, User $user){
        
-        ///Stores ip address and last login value in array
+        // Stores ip address and last login value in array
         $args = array(
             // 'ip_address' => $request->getClientIp(),
             'ip_address' => $_SERVER['REMOTE_ADDR'],

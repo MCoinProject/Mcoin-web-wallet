@@ -18,17 +18,10 @@ Route::get('/home', function () {
 	return redirect('/');
 });
 
-///return welcome page 
+/*
+ *	Return welcome page, depending on user's activation status
+ */ 
 Route::get('/', function () {
-	// if (Auth::check()) 
-	// {
-	//    return redirect('wallet');
-	// }
-	// else
-	// {
-	// 	return redirect('login');
-	// }
-
 	if (Auth::check() && (Auth::user()->getActivation()->status == 'active')) {
 	   return redirect('wallet');
 	} 
@@ -42,8 +35,8 @@ Route::get('/', function () {
 });
 
 /*
-*	Upload Photo
-*/
+ *	Upload Photo
+ */
 Route::get('photos/{filename}', function ($filename){
 	if($filename == 'default_avatar.png') {
 		return Image::make(public_path('/images/default_avatar.png'))->response();
@@ -55,26 +48,28 @@ Route::get('photos/{filename}', function ($filename){
 Auth::routes();
 
 /*
-*	Validate Transfer Asset
-*/
+ *	Validate Transfer Asset
+ */
 Route::get('/validate', 'TransferAssetController@validateTransfer');
 
 /*
-*	Activate Account Registration
-*/
+ *	Activate Account Registration
+ */
 Route::get('/activation', 'ProfileController@userActivation');
 
-///return admin page, where admin is the prefix to the route inside the group
+/*
+ *	Return admin page, where admin is the prefix to the route inside the group
+ */
 Route::group(['middleware'=>'auth'] , function () {
 
 	/*
-	*	Dashboard view
-	*/
+	 *	Dashboard view
+	 */
 	Route::get('/wallet', 'DashboardController@getData');
 	
 	/*
-	* 	Transaction view
-	*/
+	 * 	Transaction view
+	 */
 	Route::group(['prefix'=>'transactions', 'middleware'=>'auth'], function () {
 		/* TRANSFER */
 		Route::get('/transfer', function () {
@@ -92,8 +87,8 @@ Route::group(['middleware'=>'auth'] , function () {
 	});
 
 	/*
-	*	Profile view
-	*/
+	 *	Profile view
+	 */
 	Route::group(['prefix'=>'profile', 'middleware'=>'auth'], function () {
 		Route::get('/', function () {
 			return view('pages.profile');
@@ -103,14 +98,10 @@ Route::group(['middleware'=>'auth'] , function () {
 	});
 
 	/*
-	*	Logout
-	*/
+	 *	Logout
+	 */
 	Route::get('/logout', function () {
 		Auth::logout();
 		return redirect('login');
 	});
 });
-
-// Route::get('admin', function () {
-//     return view('admin_template');
-// });

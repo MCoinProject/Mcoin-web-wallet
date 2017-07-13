@@ -58,6 +58,7 @@ class TransferAssetController extends Controller
                     $message = "A confirmation link was sent to your email. Please click on the link to proceed.";
                     $success = true;
 
+                    // Send email accordint to parameter passed
                     dispatch(new SendEmail($user, $request->amount, $request->address, $code, null, 'transfer'));
 
                 } else {
@@ -70,6 +71,7 @@ class TransferAssetController extends Controller
             }        
     	}
 
+        // Return response value
     	$response->message = $message;
     	$response->success = $success;
 
@@ -81,7 +83,9 @@ class TransferAssetController extends Controller
      */
     public function validateTransfer(Request $request)
     {
+        // Assign user's transfer code into variable
         $transfer = TransferAsset::where('code', $request->txn)->first();
+
         $res = 0;
         $message = "Invalid code!";
         $success = false;
@@ -97,6 +101,7 @@ class TransferAssetController extends Controller
             $success = true;
             $message = "Transfer successful!";
 
+            // Send email accordint to parameter passed
             dispatch(new SendEmail($transfer->user, $transfer->amount, null, null, $transfer->target_email, 'receive'));
 
         } else if ($res == 2) {

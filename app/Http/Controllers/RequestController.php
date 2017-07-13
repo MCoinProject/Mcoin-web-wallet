@@ -59,11 +59,13 @@ class RequestController extends Controller
     			$success = true;
     			$message = "Your request has been sent";
 
+                // Send email accordint to parameter passed
                 dispatch(new SendEmail($user, $request->amount, null, null, $request->email, 'request'));
     		} else {
     			$message = "Your request failed to be sent";
     		}
 
+            // Return response value
             $response->success = $success;
             $response->message = $message;
 
