@@ -36,9 +36,10 @@ class ActivationEmail implements ShouldQueue
     {
         $user = $this->user;
 
+        // If the user status is inactive, execute notifyActivate 
+        // function to send activation email to user
         if($user->getActivation()->status == 'inactive') {
             $emailCtrl = new EmailController();
-
             $emailCtrl->notifyActivate($user);
         }
     }

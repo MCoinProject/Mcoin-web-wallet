@@ -21,12 +21,13 @@ class DashboardController extends Controller
     {
         $user =  Auth::user();
 
+        // Query the data from db to be displayed into table pagination of 5
     	$transfers = TransferAsset::orWhere('sender_address', $user->wallet->address)
         ->orWhere('receiver_address', $user->wallet->address)
         ->orderBy('created_at', 'desc')
         ->paginate(5);
 
-    	///return data and display to the page
+    	// Return data and display to the page
     	$page_settings = array(
     	    'transfers' => $transfers,
             'dnc_price' => $this->getDNCPrice()
@@ -35,8 +36,12 @@ class DashboardController extends Controller
     	return view('pages.dashboard')->with($page_settings);
     }   
 
+    /*
+     * 	Request DNC to be displayed
+     */
     function dncRequest( $url )
     {
+        // Declare parameter value
         $options = array(
             CURLOPT_RETURNTRANSFER => true,     // return web page
             CURLOPT_HEADER         => false,    // don't return headers
@@ -50,24 +55,34 @@ class DashboardController extends Controller
             CURLOPT_SSL_VERIFYPEER => false     // Disabled SSL Cert checks
         );
 
-        $ch      = curl_init( $url );
-        curl_setopt_array( $ch, $options );
-        $content = curl_exec( $ch );
-        $err     = curl_errno( $ch );
-        $errmsg  = curl_error( $ch );
-        $header  = curl_getinfo( $ch );
-        curl_close( $ch );
+        // Declare cURL request
+        $ch      = curl_init( $url );           // instantiate the instantce of cURL
+        curl_setopt_array( $ch, $options );     // set curl setting
+        $content = curl_exec( $ch );            // execute cURL request
+        $err     = curl_errno( $ch );           // return cURL error number
+        $errmsg  = curl_error( $ch );           // returns a string error message
+        $header  = curl_getinfo( $ch );         // get information regarding a specific transfer
+        curl_close( $ch );                      // close cURL request
 
+        // Return header's value results
         $header['errno']   = $err;
         $header['errmsg']  = $errmsg;
         $header['content'] = $content;
         return $header;
     }
 
+    /*
+     *	Get the DNC Price to be displayed
+     */
     function getDNCPrice()
     {
+        // Assign node js API request for DNC Price result into variable
         $result = $this->dncRequest("https://nodejs.dinardirham.com:8488/rCeiDSZkp5XkcOdpSvOZCAimPZ7R3RgY/quotes/DNC_1DINAR");
+
+        // Decode the result of the content to be returned
         $resp = json_decode($result['content']);
+
+        // If result content, return result to display
         if(isset($resp->ask)) {
             // return response()->json($resp);
             return ($resp->ask - ($resp->ask * 0.1));

@@ -53,6 +53,7 @@ class SendEmail implements ShouldQueue
 
         $mailer = new EmailController();
 
+        // Execute function to send email depending on type conditions
         if($type == 'transfer') {
             $mailer->notifyTransfer($user, $amount, $address, $code);
         } else if($type == 'request') {

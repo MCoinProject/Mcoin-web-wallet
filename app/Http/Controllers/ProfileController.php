@@ -19,13 +19,16 @@ use stdClass;
 
 class ProfileController extends Controller
 {
+    /*
+     *  Change user's profile picture in wallet
+     */
     public function changeProfilePicture(Request $request)
     {
         $response = new stdClass();
 
         $validator = Validator::make($request->all(), [ 
             'profile_picture' => 'required|image', 
-            ]);
+        ]);
 
         if ($validator->fails()) 
         {
@@ -34,36 +37,53 @@ class ProfileController extends Controller
         } 
         else 
         {
+            // If the image file is valid (format/download completion)
             if ($request->file('profile_picture')->isValid()) 
             {
                 $user = Auth::user();
 
+                // Check image path is exist
                 if(!File::exists(storage_path('photos/profile_pictures'))) {
+                    // Create new folder for image path with permission
                     File::makeDirectory(storage_path('photos/profile_pictures'), 0775, true);
                 }
 
+                // If user have uploaded profile picture
                 if (!empty($user->profile->profile_picture))
                 {
+                    // If the current profile picture image exist in folder
                     if(File::exists(storage_path('photos/profile_pictures/'.$user->profile->profile_picture))) {
+                        // Remove the image
                         File::Delete(storage_path('photos/profile_pictures/'.$user->profile->profile_picture));
                     }
                 }
 
+                // Create current date
                 $now = Carbon::now();
+                
+                // Get the date timestamp
                 $now = $now->timestamp; 
-                $file_name_ori = $request->file('profile_picture')->getClientOriginalName();
+
+                // Keep the image file extension format (.png/.jpg)
                 $file_extension = $request->file('profile_picture')->getClientOriginalExtension();
+
+                // Create new name based on timestamp and file extension
                 $file_name = $user->id."_".$now.".".$file_extension;
 
+                // Get the image from request
                 $image = $request->file('profile_picture');
+
+                // Define path to store new image
                 $path = storage_path('photos/profile_pictures/' . $file_name);
 
+                // Resize new image and store in the path defined
                 Image::make($image->getRealPath())->fit(240)->save($path);
 
                 $args = array(
                     'profile_picture' => $file_name
                 );
 
+                // Query to update profile picture image name in db
                 $update = Profile::where('user_id', $user->id)->update($args);
 
                 if($update == 1)
@@ -83,6 +103,9 @@ class ProfileController extends Controller
         return response()->json($response);
     }
 
+    /*
+     *  Update user's basic info in wallet
+     */
     public function updateBasicInfo(Request $request)
     {
     	$response = new stdClass();
@@ -113,6 +136,7 @@ class ProfileController extends Controller
     		}
     	}
 
+        // Assign and return response value
     	$response->success = $success;
         $response->message = $message;
 
@@ -124,6 +148,7 @@ class ProfileController extends Controller
      */
     public function userActivation(Request $request)
     {
+        // Assign user's activation code into variable
         $activation = Activation::where('code', $request->act)->first();
 
         $res = 0;
