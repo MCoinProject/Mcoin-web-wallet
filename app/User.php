@@ -48,6 +48,7 @@ class User extends Authenticatable
 
         return $this->getTotalBalance() - $miner_fee;
     }
+    
 
     /*
      * Get total transfered amount in wallet

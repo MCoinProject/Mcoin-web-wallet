@@ -137,7 +137,8 @@
              console.log(datas);
 
              swal({
-               title: 'Send Request ?',
+               title: 'Request ETP',
+               text: 'Request '+$('#email').val()+' for '+$('#amount').val()+' ETP ?',
                showCancelButton: true,
                confirmButtonText: 'Submit',
                showLoaderOnConfirm: true,

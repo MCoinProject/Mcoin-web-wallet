@@ -102,7 +102,8 @@
                 };
 
                 swal({
-                    title: 'Confirm to transfer '+$('#amount').val()+'ETP ?',
+                    title: 'Confirm to transfer '+$('#amount').val()+' ETP to <br>',
+                    text: $('#address').val()+'\n'+$('#email').val()+' ?',
                     showCancelButton: true,
                     confirmButtonText: 'Submit',
                     showLoaderOnConfirm: true,
