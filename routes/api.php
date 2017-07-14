@@ -28,4 +28,6 @@ Route::group(['prefix'=>'dash'], function () {
 	Route::get('/hash/rate', 'DashController@getHashRate');
 	Route::get('/block/count', 'DashController@getBlockCount');
 	Route::get('/account/{address}', 'DashController@getAccount');
+	Route::get('/transaction/{hash}', 'DashController@getTransaction');
+	Route::get('/info', 'DashController@getInfo');
 });

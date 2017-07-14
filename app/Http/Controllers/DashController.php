@@ -124,4 +124,88 @@ class DashController extends Controller
 
     	return response()->json($response);
     }
+
+    public function getTransaction($hash, $src = null)
+    {
+        $response = new stdClass();
+
+        if ($hash == "") 
+        {
+            $response->success = false;
+            $response->data = "Invalid hash";
+        } 
+        else 
+        {
+            $etp = new EasyDash($this->user, $this->rpc_name, $this->ip, $this->port);
+            $transaction = $etp->gettransaction($hash);
+
+            if($transaction){
+                $response->success = true;
+                $response->data = $transaction;
+            } else {
+                $response->success = false;
+                $response->data = null;
+                $response->hash = $hash;
+            }
+        }
+
+        if($src == 'web'){
+            return $response;
+        }
+
+        return response()->json($response);
+    }
+
+    public function getInfo($src = null)
+    {  
+        $response = new stdClass();
+
+        $etp = new EasyDash($this->user, $this->rpc_name, $this->ip, $this->port);
+        $getinfo = $etp->getinfo();
+
+        if($getinfo){
+            $response->success = true;
+            $response->data = $getinfo;
+        } else {
+            $response->success = false;
+            $response->data = 0;
+        }
+
+        if($src == 'web'){
+            return $response;
+        }
+
+        return response()->json($response);
+    }
+
+    public function listReceivedByAddress($minimumConfirmation = 1, $includeEmpty = false, $src = null)
+    {
+        $response = new stdClass();
+
+        if ($hash == "") 
+        {
+            $response->success = false;
+            $response->data = "Invalid hash";
+        } 
+        else 
+        {
+            $etp = new EasyDash($this->user, $this->rpc_name, $this->ip, $this->port);
+            $transaction = $etp->gettransaction($hash);
+
+            if($transaction){
+                $response->success = true;
+                $response->data = $transaction;
+            } else {
+                $response->success = false;
+                $response->data = null;
+                $response->hash = $hash;
+            }
+        }
+
+        if($src == 'web'){
+            return $response;
+        }
+
+        return response()->json($response);
+    }
 }
