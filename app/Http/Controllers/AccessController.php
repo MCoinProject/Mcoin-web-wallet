@@ -77,8 +77,7 @@ class AccessController extends Controller
 	/**
 	 * Handle the user token authentication
 	 */
-	public function authenticateUser($email, $password)
-    {
+	public function authenticateUser($email, $password) {
         $response = new stdClass();
 
         try {
@@ -127,13 +126,35 @@ class AccessController extends Controller
     }
 
 	/**
-	 * Handle get user detail
+	 * Get user detail
 	 */
 	public function getUserDetails($email) {
 		$response = new stdClass();
 
 		try {
 			$user = User::where('email', $email)->first();
+		}
+         
+        // If data is not found
+		catch(ModelNotFoundException $e) {
+			$response->success = false;
+			$response->message = "User not found";
+		}
+
+		return $user;
+	}
+
+	/**
+	 * Get user profile
+	 */
+	public function getUserProfile() {
+		// Check if user token is valid
+		$user = JWTAuth::parseToken()->authenticate();
+
+		$response = new stdClass();
+
+		try {
+			$user = User::where('email', $user->email)->first();
 		}
          
         // If data is not found

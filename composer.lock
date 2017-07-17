@@ -4,11 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "content-hash": "027ee918c46715d63babad841e6d2671",
-=======
     "content-hash": "1aa8592a7ea11c539b5c91f23abeca83",
->>>>>>> 2f0e71718d56a08c4a71053ebf5e70721276a94a
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -1391,8 +1387,6 @@
                 "schedule"
             ],
             "time": "2017-01-23T04:29:33+00:00"
-<<<<<<< HEAD
-=======
         },
         {
             "name": "namshi/jose",
@@ -1456,7 +1450,6 @@
                 "token"
             ],
             "time": "2016-12-05T07:27:31+00:00"
->>>>>>> 2f0e71718d56a08c4a71053ebf5e70721276a94a
         },
         {
             "name": "nesbot/carbon",
@@ -2403,8 +2396,6 @@
                 "shim"
             ],
             "time": "2017-06-09T14:24:12+00:00"
-<<<<<<< HEAD
-=======
         },
         {
             "name": "symfony/polyfill-php56",
@@ -2513,7 +2504,6 @@
                 "shim"
             ],
             "time": "2017-06-09T08:25:21+00:00"
->>>>>>> 2f0e71718d56a08c4a71053ebf5e70721276a94a
         },
         {
             "name": "symfony/process",
@@ -2821,8 +2811,6 @@
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
             "time": "2016-09-20T12:50:39+00:00"
-<<<<<<< HEAD
-=======
         },
         {
             "name": "tymon/jwt-auth",
@@ -2886,7 +2874,6 @@
                 "tymon"
             ],
             "time": "2017-06-07T21:32:02+00:00"
->>>>>>> 2f0e71718d56a08c4a71053ebf5e70721276a94a
         },
         {
             "name": "vlucas/phpdotenv",
@@ -3291,11 +3278,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-<<<<<<< HEAD
-            "time": "2016-09-30T07:12:33+00:00"
-=======
             "time": "2017-07-15T11:38:20+00:00"
->>>>>>> 2f0e71718d56a08c4a71053ebf5e70721276a94a
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -3342,11 +3325,7 @@
                     "email": "me@mikevanriel.com"
                 }
             ],
-<<<<<<< HEAD
-            "time": "2016-11-25T06:54:22+00:00"
-=======
             "time": "2017-07-14T14:27:02+00:00"
->>>>>>> 2f0e71718d56a08c4a71053ebf5e70721276a94a
         },
         {
             "name": "phpspec/prophecy",

@@ -34,14 +34,45 @@ Route::group(['prefix'=>'dash'], function () {
 });
 
 
-// Register User
+// Register user
 Route::post('/register', 'AccessController@registerUser');
 
-// Return Token and User Details
+// Return Token and user Details
 Route::post('/login', 'AccessController@loginUser');
 
+// Return total wallet balance
+Route::get('/wallet/balance', function () {
+	$user = JWTAuth::parseToken()->authenticate();
+	$response = new stdClass();
+
+	if(! $user) {
+		$response->success = false;
+		$response->message = "User token expired.";
+	}
+	else {
+		$response->success = true;
+		$response->walletBalance = $user->getTotalBalance();
+	}
+
+	return response()->json($response);
+});
+
 // Return user API
-Route::group(['prefix'=>'user' , 'middleware'=>'jwt'] , function () {
+Route::group(['prefix'=>'profile' , 'middleware'=>'jwt'] , function () {
 	// Return user Profiles
-	Route::get('/profile', 'AccessController@getUserProfile');
+	Route::get('/', 'AccessController@getUserProfile');
+	// Upload profile picture
+	Route::post('/picture', 'ProfileController@changeProfilePicture');
+	// Update profile info
+	Route::post('/update', 'ProfileController@updateBasicInfo');
+});
+
+// Return transactions
+Route::group(['prefix'=>'transactions'], function () {
+	// Return 5 last transaction
+	Route::get('/last/{count}', 'DashboardController@getDataAPI');
+	// Return request
+	Route::post('/request', 'RequestController@sendRequest');
+	// Return transfer
+	Route::post('/transfer', 'TransferAssetController@transferAset');
 });

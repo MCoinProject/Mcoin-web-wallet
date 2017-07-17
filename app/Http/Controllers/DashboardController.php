@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use stdClass;
-use Validator;
 
 use App\TransferAsset;
 use App\User;
+
+use stdClass;
+use Validator;
+use JWTAuth;
 
 class DashboardController extends Controller
 {   
@@ -35,6 +37,32 @@ class DashboardController extends Controller
 
     	return view('pages.dashboard')->with($page_settings);
     }   
+
+    /*
+    *   Return data requested by API
+    */
+    public function getDataAPI(Request $request, $count = null)
+    {
+        $user = JWTAuth::parseToken()->authenticate();
+        $response = new stdClass();
+
+        // Query the data from db to be displayed into table pagination according to count
+        $transfers = TransferAsset::orWhere('sender_address', $user->wallet->address)
+        ->orWhere('receiver_address', $user->wallet->address)
+        ->orderBy('created_at', 'desc')
+        ->limit($count)->get();
+
+        if(! $user) {
+            $response->success = false;
+            $response->message = "User token expired.";
+        }
+        else {
+            $response->success = true;
+            $response->last_transactions = $transfers;
+        }
+
+        return response()->json($response);
+    }
 
     /*
      * 	Request DNC to be displayed
