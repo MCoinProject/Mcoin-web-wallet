@@ -98,6 +98,18 @@ Route::group(['middleware'=>'auth'] , function () {
 	});
 
 	/*
+	 *	Staking view
+	 */
+	Route::group(['prefix'=>'stakes', 'middleware'=>'auth'], function () {
+		Route::get('/', function () {
+			return view('pages.staking');
+		});
+		Route::get('/profit', function () {
+			return view('pages.profit');
+		});
+	});
+
+	/*
 	 *	Logout
 	 */
 	Route::get('/logout', function () {

@@ -11,7 +11,8 @@
         "intervention/image": "^2.4",
         "kozz/laravel-guzzle-provider": "~6.0",
         "laravel/framework": "5.4.*",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "tymon/jwt-auth": "0.5.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

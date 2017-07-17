@@ -23,6 +23,7 @@ Route::get('/dnc/price', 'DashboardController@getDNCPrice');
 // Generate User's new Key Addresses
 Route::get('/generate/key', 'KeyGenerator@generateKey');
 
+// Get Dash API results
 Route::group(['prefix'=>'dash'], function () {
 	Route::get('/difficulty', 'DashController@getDifficulty');
 	Route::get('/hash/rate', 'DashController@getHashRate');
@@ -30,4 +31,17 @@ Route::group(['prefix'=>'dash'], function () {
 	Route::get('/account/{address}', 'DashController@getAccount');
 	Route::get('/transaction/{hash}', 'DashController@getTransaction');
 	Route::get('/info', 'DashController@getInfo');
+});
+
+
+// Register User
+Route::post('/register', 'AccessController@registerUser');
+
+// Return Token and User Details
+Route::post('/login', 'AccessController@loginUser');
+
+// Return user API
+Route::group(['prefix'=>'user' , 'middleware'=>'jwt'] , function () {
+	// Return user Profiles
+	Route::get('/profile', 'AccessController@getUserProfile');
 });

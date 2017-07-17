@@ -57,6 +57,12 @@
                     <span>Profile</span>
                 </a>
             </li>
+            <li class="{{ Request::is('stakes', 'stakes/*') ? 'active' : '' }}">
+                <a href="{{ URL::to('/stakes') }}">
+                    <i class="material-icons">clear_all</i>
+                    <span>Staking</span>
+                </a>
+            </li>
             <li>
                 <a onclick="localStorage.clear(); window.location = '/logout';">
                     <i class="material-icons">input</i>
