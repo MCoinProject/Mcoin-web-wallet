@@ -187,8 +187,15 @@ return [
         */
         'Kozz\Laravel\Providers\Guzzle',
 
-        // CAPTCHA
-        Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class
+        /*
+        * CAPTCHA
+        */
+        Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
+
+        /*
+        *   JWTAuth
+        */
+        'Tymon\JWTAuth\Providers\JWTAuthServiceProvider'
 
     ],
 
@@ -248,6 +255,11 @@ return [
         *   GUZZLE
         */
         'Guzzle' => 'Kozz\Laravel\Facades\Guzzle',
+
+        /*
+        *   JWTAuth
+        */
+        'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth'
 
     ],
 
