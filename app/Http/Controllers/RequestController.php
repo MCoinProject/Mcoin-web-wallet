@@ -13,24 +13,24 @@ use App\Jobs\SendEmail;
 
 use Validator;
 use stdClass;
+use JWTAuth;
 
 class RequestController extends Controller
 {
-    /*
-     *	Request from web
-     */
-    public function webRequest(Request $request)
-    {
-    	
-    }
-
     /*
      *	Process Request function
      */
     public function sendRequest(Request $request)
     {
     	$response = new stdClass();
-    	$user = Auth::user();
+
+        // Differentiate request between Web and API
+        if ($request->is('api*')) {
+            $user = JWTAuth::parseToken()->authenticate();
+        } else {
+            $user = Auth::user();
+        }
+    	
         $success = false;
 
     	$errors = array();
@@ -71,13 +71,5 @@ class RequestController extends Controller
 
     		return response()->json($response);
     	}
-    }
-
-    /*
-     *	Request from API
-     */
-    public function APIRequest(Request $request)
-    {
-    	
     }
 }

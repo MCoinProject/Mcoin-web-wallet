@@ -65,6 +65,10 @@ class RegisterController extends Controller
 
             $this->validator($request->all())->validate();
             event(new Registered($user = $this->create($request->all())));
+
+            // Create Wallet credentials
+            $this->createWallet($request, $user, $this->keyObj);
+
             $this->guard()->login($user);
 
             return $this->registered($request, $user)
@@ -103,39 +107,48 @@ class RegisterController extends Controller
         $newUser = User::create([
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-        ]);
+        ]);        
 
+        return $newUser;
+    }
+
+    /**
+     * Create a new wallet address after creating user.
+     *
+     * @param  array  $data
+     * @return \App\User
+     */
+    public function createWallet($data, $userData, $keyObj)
+    {
         $newWallet = Wallet::create([
-            'user_id' => $newUser->id,
-            'address' => $this->keyObj->result['address'],
-            'private_key' => $this->keyObj->result['private'],
-            'public_key' => $this->keyObj->result['public'],
-            'wif' => $this->keyObj->result['wif'],
+            'user_id' => $userData->id,
+            'address' => $keyObj->result['address'],
+            'private_key' => $keyObj->result['private'],
+            'public_key' => $keyObj->result['public'],
+            'wif' => $keyObj->result['wif'],
         ]);
 
         $newProfile = Profile::create([
-            'user_id' => $newUser->id,
-            'name' => $data['name'],
-            'phone_number' => $data['phone_number']
+            'user_id' => $userData->id,
+            'name' => $data->name,
+            'phone_number' => $data->phone_number
         ]);
 
         $newActivation = Activation::create([
-            'user_id' => $newUser->id,
+            'user_id' => $userData->id,
             'code' => str_random(20),
             'status' => 'inactive'
         ]);
 
-        ///Stores ip address and last login value in array
+        // Stores ip address and last login value in array
         $args = array(
             'ip_address' => \Request::ip(),
-            'user_id' => $newUser->id
+            'user_id' => $userData->id
         );
 
         LoginHistory::create($args);
 
         // Run Queue
-        dispatch(new ActivationEmail($newUser));
-
-        return $newUser;
+        dispatch(new ActivationEmail($userData));
     }
 }

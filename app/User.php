@@ -46,7 +46,16 @@ class User extends Authenticatable
         // Declare Miner Fee
         $miner_fee = 0.01;
 
-        return $this->getTotalBalance() - $miner_fee;
+        $totalBalance = $this->getTotalBalance();
+
+        if($totalBalance == 0) {
+            $max = 0;
+        } 
+        else {
+            $max = $totalBalance - $miner_fee;
+        }
+
+        return $max;
     }
     
 
