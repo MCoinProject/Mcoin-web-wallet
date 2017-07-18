@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use Carbon\Carbon;
 use App\User;
 use App\LoginHistory;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -66,12 +68,34 @@ class LoginController extends Controller
         $args = array(
             // 'ip_address' => $request->getClientIp(),
             'ip_address' => $_SERVER['REMOTE_ADDR'],
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'login_at' => Carbon::now(),
+            'status' => 'online'
         );
 
         LoginHistory::create($args);
 
         return redirect('/');
         
+    }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        $profileCtrl = new ProfileController();
+        $profileCtrl->setOffline();
+        
+        $this->guard()->logout();
+
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+        return redirect('/');
     }
 }

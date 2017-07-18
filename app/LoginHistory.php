@@ -13,7 +13,10 @@ class LoginHistory extends Model
      */
     protected $fillable = [
         'user_id',
-        'ip_address'
+        'ip_address',
+        'login_at',
+        'logout_at',
+        'status',
     ];
 
     public $appends = ['user'];

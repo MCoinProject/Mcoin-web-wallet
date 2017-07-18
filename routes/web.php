@@ -70,7 +70,7 @@ Route::group(['middleware'=>'auth'] , function () {
 	/*
 	 * 	Transaction view
 	 */
-	Route::group(['prefix'=>'transactions', 'middleware'=>'auth'], function () {
+	Route::group(['prefix'=>'transactions'], function () {
 		/* TRANSFER */
 		Route::get('/transfer', function () {
 			return view('pages.transfer');
@@ -89,12 +89,13 @@ Route::group(['middleware'=>'auth'] , function () {
 	/*
 	 *	Profile view
 	 */
-	Route::group(['prefix'=>'profile', 'middleware'=>'auth'], function () {
+	Route::group(['prefix'=>'profile'], function () {
 		Route::get('/', function () {
 			return view('pages.profile');
 		});
 		Route::post('/update', 'ProfileController@updateBasicInfo');
 		Route::post('/picture/update', 'ProfileController@changeProfilePicture');
+		Route::post('/offline', 'ProfileController@setOffline');
 	});
 
 	/*

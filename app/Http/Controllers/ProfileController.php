@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\File;
 
 use App\Profile;
 use App\User;
+use App\LoginHistory;
 use App\Activation;
 
 use Validator;
@@ -19,6 +20,27 @@ use stdClass;
 
 class ProfileController extends Controller
 {
+    // public function cancelOffline()
+    // {
+    //     $last = LoginHistory::where('user_id', Auth::user()->id)
+    //             ->orderBy('created_at', 'desc')
+    //             ->first();
+    // }
+
+    public function setOffline()
+    {
+        $last = LoginHistory::where('user_id', Auth::user()->id)
+                ->orderBy('created_at', 'desc')
+                ->first();
+
+        // Auth::logout();
+
+        LoginHistory::where('id', $last->id)->update([
+            'logout_at' => Carbon::now(),
+            'status' => 'offline'
+        ]);
+    }
+
     /*
      *  Change user's profile picture in wallet
      */
