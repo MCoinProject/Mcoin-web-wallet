@@ -140,13 +140,13 @@ class RegisterController extends Controller
             'status' => 'inactive'
         ]);
 
-        // Stores ip address and last login value in array
-        $args = array(
-            'ip_address' => \Request::ip(),
-            'user_id' => $userData->id
-        );
+        // // Stores ip address and last login value in array
+        // $args = array(
+        //     'ip_address' => \Request::ip(),
+        //     'user_id' => $userData->id
+        // );
 
-        LoginHistory::create($args);
+        // LoginHistory::create($args);
 
         // Run Queue
         dispatch(new ActivationEmail($userData));
