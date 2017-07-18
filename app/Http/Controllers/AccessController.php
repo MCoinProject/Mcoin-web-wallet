@@ -33,6 +33,7 @@ class AccessController extends Controller
         // Validate received data according to necessity
         $validator = Validator::make($request->all(), [ 
             'name' => 'required|max:255',
+            'username' => 'required|max:255|unique:users,username',
             'email' => 'required|email|unique:users,email',
             'phone_number' => 'required|max:255',
             'password' => 'required|max:255',
@@ -46,7 +47,7 @@ class AccessController extends Controller
         } else {
 			// Insert new user into db
             $newUser = User::create([
-                // "name" => $request->name,
+                "username" => $request->username,
 				"email" => $request->email,
 				"password" => Hash::make($request->password),
 				// "phone_number" => $request->phone_number
