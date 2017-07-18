@@ -156,6 +156,9 @@ class AccessController extends Controller
 
 		try {
 			$user = User::where('email', $user->email)->first();
+
+            $response->success = true;
+            $response->userData = $user;
 		}
          
         // If data is not found
@@ -164,6 +167,6 @@ class AccessController extends Controller
 			$response->message = "User not found";
 		}
 
-		return $user;
+		return response()->json($response);
 	}
 }
