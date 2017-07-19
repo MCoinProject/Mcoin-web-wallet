@@ -79,6 +79,14 @@ class DashboardController extends Controller
         ->orderBy('created_at', 'desc')
         ->limit($count)->get();
 
+        foreach ($transfers as $key => $transfer) {
+            if($user->wallet->address == $transfer->receiver_address){
+                $transfer->type = "receive";
+            } else {
+                $transfer->type = "transfer";
+            }
+        }
+
         return $transfers;
 
         // if(! $user) {
