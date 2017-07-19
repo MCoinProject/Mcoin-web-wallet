@@ -22,14 +22,14 @@ class Profile extends Model
         'profile_picture'
     ];
 
-    public function getProfilePictureAttribute()
+    public function getProfilePictureAttribute($value)
     {
         $url = url("/photos/default_avatar.png");
 
-        if(!empty($this->profile_picture)) {
+        if(!empty($value)) {
             // If the current profile picture image exist in folder
-            if(File::exists(storage_path('photos/profile_pictures/'.$this->profile_picture))) {
-                $url = url("/photos/".$this->profile_picture);
+            if(File::exists(storage_path('photos/profile_pictures/'.$value))) {
+                $url = url("/photos/".$value);
             }
         }
 
