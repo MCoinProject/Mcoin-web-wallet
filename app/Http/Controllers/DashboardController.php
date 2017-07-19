@@ -16,6 +16,30 @@ use JWTAuth;
 
 class DashboardController extends Controller
 {   
+    public function mobileDashboard(Request $request)
+    {
+        $response = new stdClass();
+
+        $user = JWTAuth::parseToken()->authenticate();
+        $count = $request->count;
+
+        $transactions = $this->getTransactions($user, $request->count);
+
+        $transfered = $user->getTotalTransfered();
+        $received = $user->getTotalReceived();
+        $balance = $user->getTotalBalance();
+        $dncPrice = $this->getDNCPrice();
+
+        $response->success = true;
+        $response->transactions = $transactions;
+        $response->transfered = $transfered;
+        $response->received = $received;
+        $response->balance = $balance;
+        $response->dncPrice = $dncPrice;
+
+        return response()->json($response);
+    }
+
     /*
      *  Get data to be displayed in wallet page
      */
@@ -39,12 +63,15 @@ class DashboardController extends Controller
     }   
 
     /*
-    *   Return data requested by API
+    *   Return last $count transaction
     */
-    public function getDataAPI(Request $request, $count = null)
+    public function getTransactions($user, $count = null)
     {
-        $user = JWTAuth::parseToken()->authenticate();
-        $response = new stdClass();
+        // $response = new stdClass();
+
+        if($count == null){
+            $count = 5;
+        }
 
         // Query the data from db to be displayed into table pagination according to count
         $transfers = TransferAsset::orWhere('sender_address', $user->wallet->address)
@@ -52,16 +79,18 @@ class DashboardController extends Controller
         ->orderBy('created_at', 'desc')
         ->limit($count)->get();
 
-        if(! $user) {
-            $response->success = false;
-            $response->message = "User token expired.";
-        }
-        else {
-            $response->success = true;
-            $response->last_transactions = $transfers;
-        }
+        return $transfers;
 
-        return response()->json($response);
+        // if(! $user) {
+        //     $response->success = false;
+        //     $response->message = "User token expired.";
+        // }
+        // else {
+        //     $response->success = true;
+        //     $response->last_transactions = $transfers;
+        // }
+
+        // return response()->json($response);
     }
 
     /*

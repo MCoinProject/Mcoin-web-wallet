@@ -59,6 +59,8 @@ Route::get('/wallet/balance', function () {
 
 // Return user API
 Route::group(['prefix'=>'profile' , 'middleware'=>'jwt'] , function () {
+	// Return dashboard data for mobile
+	Route::get('/dashboard', 'DashboardController@mobileDashboard');
 	// Return user Profiles
 	Route::get('/', 'AccessController@getUserProfile');
 	// Upload profile picture
@@ -70,7 +72,7 @@ Route::group(['prefix'=>'profile' , 'middleware'=>'jwt'] , function () {
 // Return transactions
 Route::group(['prefix'=>'transactions'], function () {
 	// Return 5 last transaction
-	Route::get('/last/{count}', 'DashboardController@getDataAPI');
+	// Route::get('/last/{count}', 'DashboardController@getDataAPI');
 	// Return request
 	Route::post('/request', 'RequestController@sendRequest');
 	// Return transfer
