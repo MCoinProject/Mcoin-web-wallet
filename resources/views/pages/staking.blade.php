@@ -69,11 +69,11 @@
 	                    <tbody>
 	                    	{{-- Stakies list goes here --}}
 	                    	<tr>
-	                    		<td>10 DNC</td>
+	                    		<td>10 ETP</td>
 	                    		<td>USD 200</td>
 	                    		<td>15 July 2017, 10:10:10 AM</td>
 	                    		<td></td>
-	                    		<td>1 DNC</td>
+	                    		<td>1 ETP</td>
 	                    		<td>
 	                    			<a href="/stakes/profit" type="button" class="btn btn-info waves-effect">View Profit</a>
 	                    		</td>

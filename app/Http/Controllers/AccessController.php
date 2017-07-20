@@ -133,7 +133,11 @@ class AccessController extends Controller
 		$response = new stdClass();
 
 		try {
-			$user = User::where('email', $email)->first();
+            if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    			$user = User::where('email', $email)->first();
+            } else {
+                $user = User::where('username', $email)->first();
+            }
 		}
          
         // If data is not found
