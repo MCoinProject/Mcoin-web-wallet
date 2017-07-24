@@ -36,7 +36,7 @@ class TransferAssetController extends Controller
         }
 
         $response->success = true;
-        $response->data = $transfers;
+        $response->transaction = $transfers;
 
         return response()->json($response);
     }
