@@ -17,6 +17,22 @@ use JWTAuth;
 
 class RequestController extends Controller
 {
+    public function getRequestHistories(Request $request)
+    {
+        $response = new stdClass();
+
+        $user = JWTAuth::parseToken()->authenticate();
+
+        $requests = RequestAsset::where('user_id', $user->id)
+        ->orderBy('created_at', 'desc')
+        ->paginate(10);
+
+        $response->success = true;
+        $response->request = $requests;
+
+        return response()->json($response);
+    }
+
     /*
      *	Process Request function
      */

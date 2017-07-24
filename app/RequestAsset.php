@@ -18,4 +18,11 @@ class RequestAsset extends Model
         'description',
         'amount',
     ];
+
+    public $appends = ['coin'];
+
+    public function getCoinAttribute()
+    {
+        return $this->belongsTo('App\Coin', 'coin_id')->first();
+    }
 }
