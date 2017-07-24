@@ -86,7 +86,8 @@ return [
 
     'username' => env('MAIL_USERNAME', 'etp.wallet@gmail.com'),
 
-    'password' => env('MAIL_PASSWORD', 'ckbcyslamyhcmung'),
+    // 'password' => env('MAIL_PASSWORD', 'ckbcyslamyhcmung'),
+    'password' => 'ckbcyslamyhcmung',
 
     /*
     |--------------------------------------------------------------------------
