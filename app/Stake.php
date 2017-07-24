@@ -19,11 +19,11 @@ class Stake extends Model
         'amount',
     ];
 
-    public $appends = ['logs', 'total_profix'];
+    public $appends = ['total_profix'];
 
     public function getLogsAttribute()
     {
-        return $this->belongsTo('App\StakeLogs', 'stake_id')->first();
+        return $this->hasMany('App\StakeLogs', 'stake_id')->first();
     }
 
     /*

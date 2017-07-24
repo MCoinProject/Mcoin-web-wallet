@@ -83,6 +83,12 @@ Route::group(['prefix'=>'transactions'], function () {
 
 // Return Stake
 Route::group(['prefix'=>'stake'], function () {
+	// Stake wallet
+	Route::post('/', 'StakeController@stakeWallet');
 	// Return stake history
 	Route::get('/history', 'StakeController@getStakeHistory');
+	// Return stake profit
+	Route::get('/profit', 'StakeController@getStakeProfit');
+	// Return stake log
+	Route::get('/logs', 'StakeLogController@getStakeLog');
 });

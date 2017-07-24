@@ -11,20 +11,19 @@
 	    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	        <div class="card">
 	            <div class="header">
-	                <h2>STAKE PROFIT</h2>
+	                <h2>STAKE LOGS</h2>
 	            </div>
 	            <div class="body table-responsive">
 	                <table class="table table-striped table-hover">
 	                    <thead>
 	                        <tr>
-	                            <th>Month</th>
-	                            <th>Stake Amount</th>
-	                            <th>Profit Date</th>
-	                            <th>Profit Amount</th>
+	                        	<th></th>
+	                            <th>Start</th>
+	                            <th>Stop</th>
 	                        </tr>
 	                    </thead>
 	                    <tbody>
-	                    	{{-- Stakes list goes here --}}
+	                    	{{-- Stakes logs goes here --}}
 	                    	<tr>
 	                    	</tr>
 	                    </tbody>

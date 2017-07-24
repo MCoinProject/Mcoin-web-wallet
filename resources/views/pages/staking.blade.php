@@ -76,6 +76,7 @@
 	                    		<td>1 ETP</td>
 	                    		<td>
 	                    			<a href="/stakes/profit" type="button" class="btn btn-info waves-effect">View Profit</a>
+	                    			<a href="/stakes/logs" type="button" class="btn btn-info waves-effect">View Logs</a>
 	                    		</td>
 	                    	</tr>
 	                    </tbody>

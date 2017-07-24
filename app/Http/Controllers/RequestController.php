@@ -65,7 +65,7 @@ class RequestController extends Controller
     		// Create Request
     		$newRequest = RequestAsset::create([
                 'user_id' => $user->id,
-                'coin_id' => 3,
+                'coin_id' => 1,
     			'amount' => $request->amount,
     			'email' => $request->email,
     			'description' => $request->description

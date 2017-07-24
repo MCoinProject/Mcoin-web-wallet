@@ -33,4 +33,20 @@ class StakeController extends Controller
 
     	return response()->json($response);	
     }
+
+    /*
+     *	Get stake profit
+     */
+    public function getStakeProfit()
+    {
+    	# code...
+    }
+
+    /*
+     *	Stake Wallet
+     */
+    public function stakeWallet()
+    {
+    	# code...
+    }
 }

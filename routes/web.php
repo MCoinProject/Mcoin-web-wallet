@@ -108,6 +108,9 @@ Route::group(['middleware'=>'auth'] , function () {
 		Route::get('/profit', function () {
 			return view('pages.profit');
 		});
+		Route::get('/logs', function () {
+			return view('pages.logs');
+		});
 	});
 
 	/*
