@@ -94,4 +94,12 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Activation', 'user_id')->first();
     }
+
+    /*
+     *  Return all stakes
+     */
+    public function getAllStake()
+    {
+        return $this->hasMany('App\Stake', 'user_id')->get();
+    }
 }

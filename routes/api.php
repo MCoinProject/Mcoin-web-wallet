@@ -78,3 +78,9 @@ Route::group(['prefix'=>'transactions'], function () {
 	// Return transfer
 	Route::post('/transfer', 'TransferAssetController@transferAset');
 });
+
+// Return Stake
+Route::group(['prefix'=>'stake'], function () {
+	// Return stake history
+	Route::get('/history', 'StakeController@getStake');
+});
