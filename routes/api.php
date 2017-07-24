@@ -72,7 +72,7 @@ Route::group(['prefix'=>'profile' , 'middleware'=>'jwt'] , function () {
 // Return transactions
 Route::group(['prefix'=>'transactions'], function () {
 	// Return 5 last transaction
-	// Route::get('/last/{count}', 'DashboardController@getDataAPI');
+	Route::get('/transfer/histories', 'TransferAssetController@getTransactionHistories');
 	// Return request
 	Route::post('/request', 'RequestController@sendRequest');
 	// Return transfer

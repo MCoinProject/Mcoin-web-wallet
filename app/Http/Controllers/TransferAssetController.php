@@ -8,12 +8,39 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use stdClass;
 use Validator;
+use JWTAuth;
 
 use App\TransferAsset;
 use App\Jobs\SendEmail;
 
 class TransferAssetController extends Controller
 {   
+    public function getTransactionHistories(Request $request)
+    {
+        $response = new stdClass();
+
+        $user = JWTAuth::parseToken()->authenticate();
+        $dashboardCtrl = new DashboardController();
+
+        $transfers = TransferAsset::orWhere('sender_address', $user->wallet->address)
+        ->orWhere('receiver_address', $user->wallet->address)
+        ->orderBy('created_at', 'desc')
+        ->paginate(10);
+
+        foreach ($transfers as $key => $transfer) {
+            if($user->wallet->address == $transfer->receiver_address){
+                $transfer->type = "receive";
+            } else {
+                $transfer->type = "transfer";
+            }
+        }
+
+        $response->success = true;
+        $response->data = $transfers;
+
+        return response()->json($response);
+    }
+
     /*
      *  Transfer Asset Function
      */
