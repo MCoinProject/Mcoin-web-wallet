@@ -15,7 +15,7 @@ class StakeController extends Controller
 	/*
 	 *	Get stake history
 	 */
-    public function getStake()
+    public function getStakeHistory()
     {
     	$user = JWTAuth::parseToken()->authenticate();
     	$response = new stdClass();

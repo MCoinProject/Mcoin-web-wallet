@@ -19,10 +19,18 @@ class Stake extends Model
         'amount',
     ];
 
-    public $appends = ['logs'];
+    public $appends = ['logs', 'total_profix'];
 
     public function getLogsAttribute()
     {
         return $this->belongsTo('App\StakeLogs', 'stake_id')->first();
+    }
+
+    /*
+     *  Get total stake profit from staking every month
+     */
+    public function getTotalProfitAttribute()
+    {
+        // $startStake = Stake::where();
     }
 }

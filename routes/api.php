@@ -82,5 +82,5 @@ Route::group(['prefix'=>'transactions'], function () {
 // Return Stake
 Route::group(['prefix'=>'stake'], function () {
 	// Return stake history
-	Route::get('/history', 'StakeController@getStake');
+	Route::get('/history', 'StakeController@getStakeHistory');
 });
