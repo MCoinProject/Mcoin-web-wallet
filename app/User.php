@@ -74,7 +74,7 @@ class User extends Authenticatable
      */
     public function getTotalReceived()
     {
-        return TransferAsset::where('receiver_address', $this->receiver_address)
+        return TransferAsset::where('receiver_address', $this->getWalletAttribute()->address)
         ->where('status', 'success')
         ->sum('amount');
     }

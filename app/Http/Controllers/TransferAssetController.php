@@ -47,7 +47,12 @@ class TransferAssetController extends Controller
     public function transferAset(Request $request)
     {
     	$response = new stdClass();
-    	$user = Auth::user();
+
+        if(Auth::user()) {
+            $user = Auth::user();
+        } else {
+            $user = JWTAuth::parseToken()->authenticate();
+        }
 
     	///validate received data according to necessity
     	$validator = Validator::make($request->all(), [ 
