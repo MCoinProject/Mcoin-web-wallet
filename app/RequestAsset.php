@@ -15,6 +15,7 @@ class RequestAsset extends Model
         'user_id',
         'email',
         'coin_id',
-        'description'
+        'description',
+        'amount',
     ];
 }
