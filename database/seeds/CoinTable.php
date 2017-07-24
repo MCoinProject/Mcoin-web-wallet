@@ -13,6 +13,7 @@ class CoinTable extends Seeder
     public function run()
     {
         $coins = array(
+            array('name' => 'ETP Token', 'code' => 'ETP'),
     		array('name' => 'Bitcoin', 'code' => 'BTC'),
     		array('name' => 'Ethereum', 'code' => 'ETH'),
     		array('name' => 'Dinarcoin', 'code' => 'DNC'),
