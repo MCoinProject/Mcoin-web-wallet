@@ -15,13 +15,15 @@
         <div class="card">
             <div class="body">
                 {{-- Display error message --}}
-                @if ( $errors->has('email') || $errors->has('password') || $errors->has('name') || $errors->has('phone_number') || $errors->has('g-recaptcha-response'))
+                @if ( $errors->has('email') || $errors->has('username') || $errors->has('password') || $errors->has('name') || $errors->has('phone_number') || $errors->has('g-recaptcha-response'))
                     <div class="alert bg-red alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                         @if($errors->has('email'))
                             {{ $errors->first('email') }}
                         @elseif($errors->has('password'))
                             {{ $errors->first('password') }}
+                        @elseif($errors->has('username'))
+                            {{ $errors->first('username') }}
                         @elseif($errors->has('name'))
                             {{ $errors->first('name') }}
                          @elseif($errors->has('phone_number'))
@@ -46,6 +48,16 @@
                         </span>
                         <div class="form-line">
                             <input type="text" class="form-control" name="name" placeholder="Name" required>
+                        </div>
+                    </div>
+
+                    {{-- Username Field --}}
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="username" placeholder="Username" required>
                         </div>
                     </div>
 
