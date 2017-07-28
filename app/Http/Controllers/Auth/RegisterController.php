@@ -139,8 +139,7 @@ class RegisterController extends Controller
         $newActivation = Activation::create([
             'user_id' => $userData->id,
             'code' => str_random(20),
-            // 'status' => 'inactive'
-            'status' => 'active'
+            'status' => 'inactive'
         ]);
 
         // // Stores ip address and last login value in array
@@ -152,6 +151,6 @@ class RegisterController extends Controller
         // LoginHistory::create($args);
 
         // Run Queue
-        // dispatch(new ActivationEmail($userData));
+        dispatch(new ActivationEmail($userData));
     }
 }

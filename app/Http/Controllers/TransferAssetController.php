@@ -91,7 +91,7 @@ class TransferAssetController extends Controller
                     $success = true;
 
                     // Send email accordint to parameter passed
-                    // dispatch(new SendEmail($user, $request->amount, $request->address, $code, null, 'transfer'));
+                    dispatch(new SendEmail($user, $request->amount, $request->address, $code, null, 'transfer'));
 
                 } else {
                     $message = "Transfer asset failed";
