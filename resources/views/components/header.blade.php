@@ -3,7 +3,7 @@
 <title>{{ $page_title or "Wallet" }}</title>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- Favicon-->
-<link rel="icon" href="{{ asset('lightning_fav_ico/favicon.ico') }}" type="image/x-icon">
+<link rel="icon" href="{{ asset('etp_token_fav_ico/favicon.ico') }}" type="image/x-icon">
 
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">

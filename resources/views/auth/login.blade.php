@@ -9,7 +9,8 @@
 <body class="login-page">
     <div class="login-box">
         <div class="logo">
-            <a href="javascript:void(0);">ETP <b>Wallet</b></a>
+            {{-- <a href="javascript:void(0);">ETP <b>Wallet</b></a> --}}
+            <img src="{{ asset('images/ETP_logo.png') }}" class="img-responsive"></img>
             <small>Fastest and Most Secured Wallet of All Time</small>
         </div>
         <div class="card">
