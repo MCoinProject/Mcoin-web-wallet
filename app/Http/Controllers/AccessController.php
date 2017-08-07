@@ -118,9 +118,15 @@ class AccessController extends Controller
         if($response->success) {
             $user = $this->getUserDetails($email);
 
-            $response->success = true;
-            $response->token = $token;
-            $response->user = $user;
+            if($user->getActivation()->status != 'active'){
+                JWTAuth::invalidate($token);
+                $response->success = false;
+                $response->message = 'Please activate your account';
+            } else {
+                $response->success = true;
+                $response->token = $token;
+                $response->user = $user;
+            }
         }
 
         return $response;
